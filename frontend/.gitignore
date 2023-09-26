@@ -1,89 +1,42 @@
-# Dependency directories
-node_modules/
-/dist/
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# Angular
-*.stackdump
-*.suo
-*.user
-*.dll
-*.pidb
-*.log
-*.tlog
-*.tlog/*
-*.manifest
-*.obj
-*.cache
-*.ipch
-*.lib
-*.atdb
-*.aps
-*.bak
-*.bin
-*.pch
-*.vspscc
-*.vssscc
-*_i.c
-*_p.c
-*.ncb
-*.suo
-*.tlb
-*.tlh
-*.bak
-*.asm
-*.ini
-*.zip
-*.rar
-*.cab
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.bmp
-*.ico
-*.exe
-*.dll
-*.pdb
-*.ilk
-*.msi
-*.msp
-*.lnk
-*.ncb
-*.suo
-*.tlb
-*.tlh
-*.bak
-*.obj
-*.mk
-*.exp
-*.bc
-*.cl
-*.aps
-*.aps
-*.~m2
-*.~mp
-*.log
-*.old
-*.bak
-*.bak
-*.bak
-*.bak
-*.bak
-.DS_Store
-Thumbs.db
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
 
-# Angular CLI
-e2e/*.js
-e2e/*.map
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
 
-# Protractor
-protractor.log
-
-# JetBrains IDE
+# IDEs and editors
 .idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
 # Visual Studio Code
-.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
 
-# Custom
-*.editorconfig
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
