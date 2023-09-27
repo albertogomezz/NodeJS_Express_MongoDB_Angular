@@ -21,9 +21,17 @@ const findAll = asyncHandler( async (req, res) => {
 
     const categories = await Category.find();
 
-    res.json(categories);
-    res.status(400).send({ message: "Some error occurred while retrieving categorys." });
-  });
+    if (!categories) {
+      return res.status(401).json({
+        message: "Category not found"
+      })
+    }
+    return res.status(200).json({
+      categories: await Promise.all(categories.map( async categories => {
+          return await categories.toCategoryResponse()
+      }))
+    });
+});
 
 // UNA CATEGORIA 
 

@@ -34,11 +34,11 @@ category_schema.methods.slugify = function () {
 
 category_schema.methods.toCategoryResponse = function(){
     return {
-        slug: this.slug,
-        id_cat: this.id_cat,
+        // slug: this.slug,
+        // id_cat: this.id_cat,
         category_name: this.category_name,
-        image: this.image,
-        products: this.products,
+        // image: this.image,
+        // products: this.products,
     };
 };
 
