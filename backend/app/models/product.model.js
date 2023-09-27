@@ -39,5 +39,14 @@ ProductSchema.methods.slugify = async function () {
     this.slug = slugify(this.name) + '-' + (Math.random() * Math.pow(36, 10) | 0).toString(36);
 };
 
+ProductSchema.methods.toProductResponse = async function () {
+    return {
+        slug: this.slug,
+        name : this.name,
+        price: this.price,
+        description: this.description,
+        id_cat : this.id_cat
+    }
+}
 
 module.exports = mongoose.model('Product', ProductSchema);

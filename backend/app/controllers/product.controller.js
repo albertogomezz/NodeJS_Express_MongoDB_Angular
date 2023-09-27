@@ -1,4 +1,5 @@
 const Product = require('../models/product.model.js');
+const category = require('../models/category.model.js');
 const mongoose = require('mongoose');
 const asyncHandler = require('express-async-handler');
 
@@ -12,11 +13,9 @@ const createProduct = asyncHandler(async (req, res) => {
     };
     const nuevoProducto = await new Product(productData);
     const newproduct = await nuevoProducto.save();
+    // const category = await category.updateOne({slug: newproduct.id_cat}, {$push: {products: newproduct.slug}})
     res.status(201).json({ product: newproduct });
 });
-
-
-
 
 //findALL
 const findAllProduct = asyncHandler(async (req, res) => {
@@ -28,32 +27,18 @@ const findAllProduct = asyncHandler(async (req, res) => {
 
 const findOneProduct = asyncHandler(async (req, res) => {
     const products = await Product.findOne(req.params)
-    res.send(products);
+    
+    if (!products) {
+        return res.status(401).json({
+            message: "Product Not Found"
+        });
+    }
+    return res.status(200).json({
+        products: await products.toProductResponse()
+    })
 });
 
-// Find a single note with a noteId
-// exports.findOne = (req, res) => {
-//     Product.findById(req.params.id)
-//     .then(product => {
-//         if(!product) {
-//             return res.status(404).send({
-//                 message: "Note not found with id " + req.params.id
-//             });            
-//         }
-//         res.send(product);
-//     }).catch(err => {
-//         if(err.kind === 'ObjectId') {
-//             return res.status(404).send({
-//                 message: "Note not found with id " + req.params.id
-//             });                
-//         }
-//         return res.status(500).send({
-//             message: "Error retrieving note with id " + req.params.id
-//         });
-//     });
-// };
-
-// // Update a note identified by the noteId in the request
+//DELETE ONE
 const deleteOneProduct = asyncHandler(async (req, res) => {
     await Product.findOneAndDelete(req.params);
     res.send({message: "Product was deleted successfully!"}); 
