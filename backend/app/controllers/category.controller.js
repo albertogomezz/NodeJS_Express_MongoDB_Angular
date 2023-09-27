@@ -1,49 +1,38 @@
 const Category = require("../models/category.model.js");
+const asyncHandler = require('express-async-handler');
 
-// Create and Save a new Category
-// exports.create_category = async (req, res) => {
-//   try {
-//     const category_data = {
-//       id_cat: req.body.id_cat || null,
-//       category_name: req.body.category_name || null,
-//       image: req.body.image || null,
-//       products: []
-//     };
-//     const category = new Category(category_data);
-//     const new_category = await category.save();
-//     res.json(new_category);
-//   } catch (error) {
-//     res.status(500).send({message: error.message || "Some error occurred while creating the Category."});
-//   }
-// };
+const create = asyncHandler(async (req, res) => {
 
-// Retrieve all Category from the database.
-exports.findAll_category = async (req, res) => {
-  try {
-    // const { offset, limit } = req.query;
+    const category_data = {
+      id_cat: req.body.id_cat || null,
+      category_name: req.body.category_name || null,
+      image: req.body.image || null,
+      // products: []
+    };
+
+    const category = await new Category(category_data);
+    const new_category = await category.save();
+
+    res.json(new_category);
+});
+
+// TOTES LES CATEGORIES
+
+const findAll = asyncHandler( async (req, res) => {
+
     const categories = await Category.find();
-    res.json(categories.map(category => category.toJSONFor()));
-    // res.json(categories);
-  } catch (error) {
-    res.status(400).send({ message: "Some error occurred while retrieving categorys." });
-  }
-}
 
-// exports.findOne_category = async (req, res) => {
-//   try {
-//       const id = req.params.id
-//       const category = await Category.findOne({ slug: id }).populate('products');
-//       if (!category) {
-//           res.status(404).send({message: `Category not found!`});
-//       } else {
-//           res.json(category);
-//       };
-//   } catch (error) {
-//     console.log(error);
-//       if (error.kind === 'ObjectId') {res.status(404).send({message: `Category not found!`}); }
-//       else {res.status(500).send({message: "An error has ocurred"});}
-//   }
-// };
+    res.json(categories);
+    res.status(400).senÇd({ message: "Some error occurred while retrieving categorys." });
+  });
+
+// UNA CATEGORIA 
+
+const findOne = asyncHandler(async (req, res) => {
+
+  const categories = await Category.findOne(req.params)
+  res.send(categories);
+});
 
 // // // Update a Category by the id in the request
 // exports.update_category = async (req, res) => {
@@ -70,18 +59,12 @@ exports.findAll_category = async (req, res) => {
 //   }
 // }
 
-// // // Delete a Category with the specified id in the request
-// exports.delete_category = async (req, res) => {
-//   try {
-//     const id = req.params.id
-//     const categorie = await Category.findOneAndDelete({ id });
-//     if (!categorie) {res.status(404).send({ message: `Cannot delete Category with id=${id}. Maybe Category was not found!`}); }
-//     res.send({message: "Category was deleted successfully!"});
-//   } catch (error) {
-//     if (error.kind === 'ObjectId') {res.status(404).send({ message: `Category not found!`}); }
-//     else { res.status(500).send({ message: "Could not delete that category" }); }
-//   }
-// }
+// ELIMINAR UNA CATEGORIA
+
+const delete_category = asyncHandler(async (req, res) => {
+    await Category.findOneAndDelete(req.params);
+    res.send({message: "Category was deleted successfully!"}); 
+});
 
 // exports.deleteAll_categories = async (req, res) => {
 //   try {
@@ -91,3 +74,10 @@ exports.findAll_category = async (req, res) => {
 //     res.status(500).send({message: err.message || "Some error occurred while removing all category."});
 //   }
 // }
+
+module.exports = {
+  create,
+  findAll,
+  findOne,
+  delete_category
+}

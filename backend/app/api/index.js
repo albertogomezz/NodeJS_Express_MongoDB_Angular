@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 // Configuring the database
-const dbConfig = require('./config/database.config.js');
+const dbConfig = require('../config/database.config.js');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
@@ -38,8 +38,10 @@ mongoose.connect(dbConfig.url, {
     process.exit();
 });
 
-require('./app/routes/product.routes.js')(app);
+// require('../routes/product.routes.js')(app);
+require('../routes/category.routes.js')(app);
 
+// require('./app/routes/product.routes.js')(app);
 app.listen(process.env.PORT, () => {
   console.log(`Servidor Express en el puerto ${process.env.PORT}`);
 });
