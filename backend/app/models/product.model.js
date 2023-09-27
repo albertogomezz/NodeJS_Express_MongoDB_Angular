@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
-const slug = require('slug');
+const slugify = require('slugify');
+const uniqueValidator = require('mongoose-unique-validator');
 
-const product_schema = mongoose.Schema({
+
+const ProductSchema = mongoose.Schema({
     slug: { 
         type: String, 
         lowercase: true, 
@@ -19,20 +21,23 @@ const product_schema = mongoose.Schema({
         type: String,
         required: true
     },
-    id_cat: [{ 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'categories' }]
-});
+    id_cat: { 
+        type: mongoose.Schema.Types.ObjectId
+}});
 
-product_schema.pre('validate', function (next) {
+ProductSchema.plugin(uniqueValidator, { msg: "already taken" });
+ProductSchema.pre('validate',  async function (next) {
     if (!this.slug) {
-        this.slugify();
+        console.log('dentro del if');
+        await this.slugify();
     }
+    console.log(this.slug);  
     next();
 });
 
-product_schema.methods.slugify = function () {
-    this.slug = slug(this.name) + '-' + (Math.random() * Math.pow(36, 6) | 0).toString(36);
+ProductSchema.methods.slugify = async function () {
+    this.slug = slugify(this.name) + '-' + (Math.random() * Math.pow(36, 10) | 0).toString(36);
 };
 
-module.exports = mongoose.model('productos', product_schema);
+
+module.exports = mongoose.model('Product', ProductSchema);
