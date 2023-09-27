@@ -32,15 +32,15 @@ category_schema.methods.slugify = function () {
     this.slug = slug(this.category_name) + '-' + (Math.random() * Math.pow(36, 6) | 0).toString(36);
 };
 
-// category_schema.methods.toJSONFor = function(){
-//     return {
-//         slug: this.slug,
-//         id_cat: this.id_cat,
-//         category_name: this.category_name,
-//         image: this.image,
-//         products: this.products,
-//     };
-// };
+category_schema.methods.toCategoryResponse = function(){
+    return {
+        // slug: this.slug,
+        // id_cat: this.id_cat,
+        category_name: this.category_name,
+        // image: this.image,
+        // products: this.products,
+    };
+};
 
 // category_schema.methods.toJSONCarousel = function(){
 //     return {
