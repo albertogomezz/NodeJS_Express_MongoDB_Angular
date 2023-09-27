@@ -39,7 +39,7 @@ mongoose.connect(dbConfig.url, {
 });
 
 // require('../routes/product.routes.js')(app);
-require('../routes/category.routes.js')(app);
+require('../routes/category.routes')(app);
 require('../routes/product.routes')(app);
 
 // require('./app/routes/product.routes.js')(app);
