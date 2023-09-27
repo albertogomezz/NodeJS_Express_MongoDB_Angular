@@ -8,10 +8,6 @@ const category_schema = mongoose.Schema({
         lowercase: true, 
         unique: true 
     },
-    id_cat: {
-        type: String,
-        required: true
-    },
     category_name: {
         type: String,
         required: true
@@ -20,7 +16,7 @@ const category_schema = mongoose.Schema({
         type: String,
         required: true
     },
-    // products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
+    products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
 });
 
 category_schema.plugin(uniqueValidator, { msg: "already taken" });
@@ -36,7 +32,7 @@ category_schema.methods.slugify = function () {
     this.slug = slug(this.category_name) + '-' + (Math.random() * Math.pow(36, 6) | 0).toString(36);
 };
 
-category_schema.methods.toJSONFor = function(){
+category_schema.methods.toCategoryResponse = function(){
     return {
         slug: this.slug,
         id_cat: this.id_cat,
@@ -46,12 +42,12 @@ category_schema.methods.toJSONFor = function(){
     };
 };
 
-category_schema.methods.toJSONCarousel = function(){
-    return {
-        slug: this.slug,
-        image: this.image,
-        category_name: this.category_name
-    };
-};
+// category_schema.methods.toJSONCarousel = function(){
+//     return {
+//         slug: this.slug,
+//         image: this.image,
+//         category_name: this.category_name
+//     };
+// };
 
 module.exports = mongoose.model('Category', category_schema);

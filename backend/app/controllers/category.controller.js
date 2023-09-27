@@ -4,10 +4,9 @@ const asyncHandler = require('express-async-handler');
 const create = asyncHandler(async (req, res) => {
 
     const category_data = {
-      id_cat: req.body.id_cat || null,
       category_name: req.body.category_name || null,
       image: req.body.image || null,
-      // products: []
+      products: []
     };
 
     const category = await new Category(category_data);
@@ -23,7 +22,7 @@ const findAll = asyncHandler( async (req, res) => {
     const categories = await Category.find();
 
     res.json(categories);
-    res.status(400).senÇd({ message: "Some error occurred while retrieving categorys." });
+    res.status(400).send({ message: "Some error occurred while retrieving categorys." });
   });
 
 // UNA CATEGORIA 
@@ -31,7 +30,15 @@ const findAll = asyncHandler( async (req, res) => {
 const findOne = asyncHandler(async (req, res) => {
 
   const categories = await Category.findOne(req.params)
-  res.send(categories);
+
+  if (!categories) {
+    return res.status(401).json({
+      message: "Category not found"
+    })
+  }
+  return res.status(200).json({
+    categories: await categories.toCategoryResponse()
+  })
 });
 
 // // // Update a Category by the id in the request
