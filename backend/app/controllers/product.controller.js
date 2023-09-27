@@ -20,14 +20,20 @@ const createProduct = asyncHandler(async (req, res) => {
 //findALL
 const findAllProduct = asyncHandler(async (req, res) => {
     const products = await Product.find();
-    console.log(products);
-    res.send(products);
+    if (!products) {
+        return res.status(401).json({
+            message: "Product Not Found"
+        });
+    }
+    return res.status(200).json({
+        products: await Promise.all(products.map(async products => {
+            return await products.toProductResponse();
+        }))
+    });
 });
-
 
 const findOneProduct = asyncHandler(async (req, res) => {
     const products = await Product.findOne(req.params)
-    
     if (!products) {
         return res.status(401).json({
             message: "Product Not Found"
