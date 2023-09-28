@@ -9,7 +9,7 @@ dotenv.config();
 
 // Habilita CORS para todas las rutas
 const corsOptions = {
-  origin: process.env.PORT, 
+  origin: process.env.CORSURL, 
   optionsSuccessStatus: 200
 };
 
