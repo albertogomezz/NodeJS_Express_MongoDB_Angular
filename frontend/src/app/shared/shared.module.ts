@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-// import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-// import { NgxMultiselectModule } from '@ngx-lib/multiselect';
+
 
 //CATEGORIAS
 import { ListCategoriesComponent } from '../shared/list-categories/list-categories.component';

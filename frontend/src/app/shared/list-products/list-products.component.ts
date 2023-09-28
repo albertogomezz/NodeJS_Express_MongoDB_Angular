@@ -10,13 +10,7 @@ import { Product } from '../../core/models/product.model'
 })
 export class ListProductsComponent implements OnInit {
   products: Product[] = [];
-  currentProduct: Product = {
-    slug: "",
-    name: "",
-    description: "",
-    price: 0,
-    id_cat : ""
-  };
+
   constructor(private productService: ProductService){}
   ngOnInit(): void {
     this.get_products();
@@ -28,7 +22,6 @@ export class ListProductsComponent implements OnInit {
       (data : any) => {
         console.log(data);
         this.products = data.products;
-        // console.log(this.Products);
     });
   }
 }
