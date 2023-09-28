@@ -6,6 +6,11 @@ import { AppComponent } from './app.component';
 // import { CoreModule } from './core/core.module';
 import { FooterComponent, HeaderComponent } from './shared/layout/index';
 
+// Toastr
+// import { ToastrModule } from 'ngx-toastr';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -13,7 +18,9 @@ import { FooterComponent, HeaderComponent } from './shared/layout/index';
     HeaderComponent,
   ],
   imports: [
+    // CoreModule,
     BrowserModule,
+    // BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule
   ],
