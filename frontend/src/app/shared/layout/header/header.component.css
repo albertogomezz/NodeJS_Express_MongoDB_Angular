@@ -19,7 +19,7 @@ nav li li{float:none}
 nav .dropdown ul{position:absolute;left:0;top:100%;background:#fff;padding:20px 0;border-bottom:3px solid #34495e}
 nav .dropdown li{white-space:nowrap}
 nav .dropdown li a{padding:10px 35px;font-size:13px;min-width:200px}
-nav .mega-dropdown{width:100%;position:absolute;top:100%;left:0;background:#fff;overflow:hidden;padding:20px 35px;border-bottom:3px solid #34495e}
+nav .mega-dropdown{width:100%;position:absolute;top:100%;left:0;background:#fff;overflow:hidden;padding:20px 35px;border-bottom:3px solid #34495e; z-index: 2;}
 nav li li a{float:none;color:#333;display:block;padding:8px 10px;border-radius:3px;font-size:13px}
 nav li li a:hover{background:#bdc3c7;background:#FAFBFB}
 .mega-col{width:25%;float:left}
