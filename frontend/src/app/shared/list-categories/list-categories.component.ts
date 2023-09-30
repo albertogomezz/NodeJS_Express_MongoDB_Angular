@@ -8,7 +8,7 @@ import { Category } from 'src/app/core/models/category.model';
   styleUrls: ['./list-categories.component.css']
 })
 export class ListCategoriesComponent {
-
+  
   categories: Category[] = [];
 
   constructor(private CategoryService: CategoryService) { }

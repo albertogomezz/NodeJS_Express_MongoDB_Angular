@@ -1,10 +1,1 @@
-<table>
-    <tbody>
-        <tr *ngFor="let category of categories">
-            <td>{{category.category_name}}</td>
-            <td></td>
-            <td></td>
-        </tr>
-
-    </tbody>
-</table>
+<app-card-category class="item" *ngFor="let category of categories" [categories]="category"></app-card-category>
