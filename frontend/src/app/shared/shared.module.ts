@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 
 //CATEGORIAS
 import { ListCategoriesComponent } from '../shared/list-categories/list-categories.component';
+import { CardCategoryComponent } from '../shared/card-category/card-category.component';
 
 //PRODUCTOS
 import { ListProductsComponent } from '../shared/list-products/list-products.component';
@@ -23,6 +24,7 @@ import { CardProductComponent } from '../shared/card-product/card-product.compon
     ],
     declarations: [
         ListCategoriesComponent,
+        CardCategoryComponent,
         ListProductsComponent,
         CardProductComponent,
     ],
@@ -32,6 +34,7 @@ import { CardProductComponent } from '../shared/card-product/card-product.compon
         FormsModule,
         ReactiveFormsModule,
         CardProductComponent,
+        CardCategoryComponent
     ],
 })
 
