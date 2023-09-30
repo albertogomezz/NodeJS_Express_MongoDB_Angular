@@ -5,16 +5,10 @@ html,body {
     font-family: Arial, Helvetica, Sans-serif;
     background-color: #070617;
   }
-  .dummy_page {
-    height: 200px;
-    width: 100%;
-    background-color: #f0f0f0;
-    text-align: center;
-    box-sizing: border-box;
-    padding: 60px 0px;
-  }
+
   /* STYLES SPECIFIC TO FOOTER  */
   .footer {
+    margin-top: 100px;
     width: 100%;
     position: relative;
     height: auto;

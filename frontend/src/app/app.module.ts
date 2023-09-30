@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // import { FooterComponent, HeaderComponent } from './shared/layout/index';
 import { FooterComponent, HeaderComponent, SharedModule } from './shared';
+// import { NgModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 // Toastr
 // import { ToastrModule } from 'ngx-toastr';
@@ -25,6 +27,6 @@ import { FooterComponent, HeaderComponent, SharedModule } from './shared';
     HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,]
 })
 export class AppModule { }
