@@ -22,10 +22,13 @@ const ProductSchema = mongoose.Schema({
         required: true
     },
     id_cat: { 
-        type: mongoose.Schema.Types.ObjectId
-}});
+        type: String,
+        required: true
+    }
+});
 
 ProductSchema.plugin(uniqueValidator, { msg: "already taken" });
+
 ProductSchema.pre('validate',  async function (next) {
     if (!this.slug) {
         console.log('dentro del if');

@@ -4,6 +4,7 @@ const asyncHandler = require('express-async-handler');
 const create = asyncHandler(async (req, res) => {
 
     const category_data = {
+      id_cat: req.body.id_cat || null,
       category_name: req.body.category_name || null,
       image: req.body.image || null,
       products: []

@@ -1,20 +1,38 @@
 const Product = require('../models/product.model.js');
-const category = require('../models/category.model.js');
+const Category = require('../models/category.model.js');
 const mongoose = require('mongoose');
 const asyncHandler = require('express-async-handler');
 
 //create
 const createProduct = asyncHandler(async (req, res) => {
+
     const productData = {
         name: req.body.name || null,
         price: req.body.price || 0,
         description: req.body.description || null,
         id_cat: req.body.id_cat || null,
     };
+
+    const id_cat = req.body.id_cat;
+    
+    const category = await Category.findOne({id_cat}).exec();
+
+    if (!category) {
+        res.status(400).json({message: "Ha ocurrido un error al buscar la categoria"});
+    }
+
     const nuevoProducto = await new Product(productData);
-    const newproduct = await nuevoProducto.save();
-    // const category = await category.updateOne({slug: newproduct.id_cat}, {$push: {products: newproduct.slug}})
-    res.status(201).json({ product: newproduct });
+    await nuevoProducto.save();
+
+    if (!nuevoProducto) {
+        res.status(400).json({message: "Ha ocurrido un error"});
+    }
+
+    await category.addProduct(nuevoProducto._id);
+
+    return res.status(200).json({
+        product: await nuevoProducto.toProductResponse()
+    })
 });
 
 //findALL
@@ -46,8 +64,27 @@ const findOneProduct = asyncHandler(async (req, res) => {
 
 //DELETE ONE
 const deleteOneProduct = asyncHandler(async (req, res) => {
-    await Product.findOneAndDelete(req.params);
-    res.send({message: "Product was deleted successfully!"}); 
+
+    const slug = req.params;
+
+    // res.send(slug);
+    const product = await Product.findOne(slug).exec();
+
+    // res.send(product);
+    if (!product) {
+        res.status(400).json({message: "Producto no encontrado"});
+    }
+
+    const id_cat = product.id_cat
+    // res.send(id_cat);
+    const category = await Category.findOne({id_cat}).exec();
+
+    if (!category) {
+        res.status(400).json({message: "Ha ocurrido un error"});
+    }
+
+    await category.removeProduct(product._id)
+
 });
 
 //     // Find note and update it with the request body
