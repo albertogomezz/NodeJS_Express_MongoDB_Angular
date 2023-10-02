@@ -87,6 +87,27 @@ const deleteOneProduct = asyncHandler(async (req, res) => {
 
 });
 
+
+const GetProductsByCategory = asyncHandler(async (req, res) => {
+    const slug = req.params;
+    
+    // console.log(slug);
+
+    const category = await Category.findOne(slug).exec();
+    // res.send(category);
+    if (!category) {
+        res.status(400).json({message: "Categoria no encontrada"});
+    }
+
+    return await res.status(200).json({
+        products: await Promise.all(category.products.map(async productId => {
+            const productObj = await Product.findById(productId).exec();
+            return await productObj.toProductResponse();
+        }))
+    })
+    
+});
+
 //     // Find note and update it with the request body
 //     Product.findByIdAndUpdate(req.params.id, {
 //         nombre: req.body.nombre, 
@@ -145,5 +166,6 @@ module.exports = {
     createProduct,
     findAllProduct,
     findOneProduct,
-    deleteOneProduct
+    deleteOneProduct,
+    GetProductsByCategory
 }

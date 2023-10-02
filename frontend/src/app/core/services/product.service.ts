@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
 
 const URL = 'http://localhost:3000/products';
+const URLcat = 'http://localhost:3000/categories';
 
 @Injectable({
     providedIn: 'root'
@@ -40,4 +41,12 @@ export class ProductService {
     delete_all_products(): Observable<Product[]> {
     return this.http.delete<Product[]>(`${URL}`);
     }
+
+    getProductsByCategory(slug: String): Observable<Product[]> {
+        return this.http.get<Product[]>(`${URLcat}/${slug}`);
+        }
+    // get_products_from_category(slug: String, params: any): Observable<{products: Product[], product_count: number}> {
+    //     return this.apiService.get_products('products/category/', slug, new HttpParams({fromObject:params}));
+    //   }
+    
 }

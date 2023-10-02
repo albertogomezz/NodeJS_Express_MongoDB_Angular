@@ -1,24 +1,3 @@
-<!-- <table>
-    <tbody>
-        <tr class="category" *ngIf="categories">
-            <td>{{categories.category_name}}</td>
-            <td>{{categories.slug}}</td>
-        </tr>
-    </tbody>
-</table> -->
-<!-- <head>
-
-   //Enlace a la hoja de estilo de Bootstrap 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
-    //Enlace a la biblioteca jQuery (debe estar antes de bootstrap.bundle.min.js) 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    //  Enlace a Bootstrap JavaScript (incluyendo Popper.js) 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-</head> -->
-
-
 <div class="container mt-100">
     <div class="row">
         <div class="col-md-4 col-sm-6 category" *ngIf="categories">
@@ -28,7 +7,7 @@
                 </div></a>
             <div class="card-body text-center">
                 <h4 class="card-title">{{categories.category_name}}</h4>
-                <a class="btn btn-outline-primary btn-sm" href="#" data-abc="true">View Products</a>
+                <a class="btn btn-outline-primary btn-sm" [routerLink]="['/shop/categories/', categories.slug]" data-abc="true">View Products</a>
             </div>
         </div>
     </div>

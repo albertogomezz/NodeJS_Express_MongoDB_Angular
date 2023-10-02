@@ -8,11 +8,11 @@ const routes: Routes = [
     component: ShopComponent,
     resolve: {},
   },
-//   {
-//     path: 'categories/:slug',
-//     component: ShopComponent,
-//     resolve: {},
-//   },
+  {
+    path: 'categories/:slug',
+    component: ShopComponent,
+    resolve: {},
+  },
 //   {
 //     path: ':filters',
 //     component: ShopComponent,

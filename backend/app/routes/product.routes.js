@@ -16,6 +16,9 @@ module.exports = (app) => {
     // Delete a Note with noteId
     app.delete('/products/:slug', products.deleteOneProduct);
 
+        //get products by category
+        app.get('/categories/:slug', products.GetProductsByCategory);
+        
     // Delete todos los mf products
     // app.delete('/products_all', products.deleteAll);
 }
