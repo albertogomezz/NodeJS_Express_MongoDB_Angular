@@ -37,7 +37,7 @@ export class ListProductsComponent implements OnInit {
         (data : any) => {
           // console.log(data);
           this.products = data.products;
-          // console.log(this.products[0].images);
+          console.log(this.products[0].images);
       });
     }
   }
