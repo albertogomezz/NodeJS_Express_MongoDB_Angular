@@ -12,6 +12,7 @@ import { CardCategoryComponent } from '../shared/card-category/card-category.com
 //PRODUCTOS
 import { ListProductsComponent } from '../shared/list-products/list-products.component';
 import { CardProductComponent } from '../shared/card-product/card-product.component';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import { CardProductComponent } from '../shared/card-product/card-product.compon
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        RouterModule
+        RouterModule,
+        InfiniteScrollModule
     ],
     declarations: [
         ListCategoriesComponent,
