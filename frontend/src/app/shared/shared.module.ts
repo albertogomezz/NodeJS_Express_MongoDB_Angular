@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 
+
 //CATEGORIAS
 import { ListCategoriesComponent } from '../shared/list-categories/list-categories.component';
 import { CardCategoryComponent } from '../shared/card-category/card-category.component';
@@ -12,6 +13,9 @@ import { CardCategoryComponent } from '../shared/card-category/card-category.com
 //PRODUCTOS
 import { ListProductsComponent } from '../shared/list-products/list-products.component';
 import { CardProductComponent } from '../shared/card-product/card-product.component';
+import { CarouselItemsComponent } from './carousel-items/carousel-items.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
     imports: [
@@ -19,13 +23,17 @@ import { CardProductComponent } from '../shared/card-product/card-product.compon
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        RouterModule
+        RouterModule,
+        NgbModule
     ],
     declarations: [
         ListCategoriesComponent,
         CardCategoryComponent,
         ListProductsComponent,
         CardProductComponent,
+        CarouselItemsComponent,
+        CarouselComponent,
+        
     ],
     exports: [
         ListCategoriesComponent,
@@ -33,7 +41,9 @@ import { CardProductComponent } from '../shared/card-product/card-product.compon
         FormsModule,
         ReactiveFormsModule,
         CardProductComponent,
-        CardCategoryComponent
+        CardCategoryComponent,
+        CarouselItemsComponent,
+        CarouselComponent
     ],
 })
 

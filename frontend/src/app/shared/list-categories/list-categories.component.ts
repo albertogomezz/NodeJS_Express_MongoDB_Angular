@@ -29,4 +29,7 @@ export class ListCategoriesComponent {
       }
     );
   }
+  scroll(){
+    this.getCategories();
+  }
 }

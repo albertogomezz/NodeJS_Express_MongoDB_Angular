@@ -46,6 +46,14 @@ category_schema.methods.toCategoryResponse = function(){
     };
 };
 
+category_schema.methods.toCategoryCarouselResponse = function(){
+    return {
+        slug: this.slug,
+        image: this.image
+    };
+};
+
+
 category_schema.methods.addProduct = function (product_id) {
     if(this.products.indexOf(product_id) === -1){
         this.products.push(product_id);

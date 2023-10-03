@@ -1,0 +1,11 @@
+<ngb-carousel *ngIf="category">
+	<ng-template ngbSlide>
+		<div class="picsum-img-wrapper">
+			<img [src]="" alt="Random first slide" />
+		</div>
+		<div class="carousel-caption">
+			<h3>{{category.image}}</h3>
+			<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+		</div>
+	</ng-template>
+</ngb-carousel>

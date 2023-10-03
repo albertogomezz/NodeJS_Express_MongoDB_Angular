@@ -41,6 +41,7 @@ mongoose.connect(dbConfig.url, {
 // require('../routes/product.routes.js')(app);
 require('../routes/category.routes')(app);
 require('../routes/product.routes')(app);
+require('../routes/carousel.routes')(app);
 
 // require('./app/routes/product.routes.js')(app);
 app.listen(process.env.PORT, () => {
