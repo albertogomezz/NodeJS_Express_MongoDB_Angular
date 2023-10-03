@@ -11,6 +11,7 @@ const createProduct = asyncHandler(async (req, res) => {
         price: req.body.price || 0,
         description: req.body.description || null,
         images: req.body.images,
+        img: req.body.img || null,
         id_cat: req.body.id_cat || null,
     };
 

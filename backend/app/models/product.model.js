@@ -22,6 +22,10 @@ const ProductSchema = mongoose.Schema({
         required: true
     },
     images: [],
+    img: {
+        type: String,
+        required: true
+    },
     id_cat: { 
         type: String,
         required: true
@@ -50,6 +54,7 @@ ProductSchema.methods.toProductResponse = async function () {
         price: this.price,
         description: this.description,
         images: this.images,
+        img: this.img,
         id_cat : this.id_cat
     }
 }

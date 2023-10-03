@@ -23,20 +23,23 @@ export class ListProductsComponent implements OnInit {
 
 
   get_products(): void {
+
     if (this.slug_Category != null){
       this.productService.getProductsByCategory(this.slug_Category).subscribe(
         (data : any) => {
-          console.log(data);
+          // console.log(data);
           this.products = data.products;
       })
-    }else{
+    }
+    
+    else{
       this.productService.get_products().subscribe(
         (data : any) => {
-          console.log(data);
+          // console.log(data);
           this.products = data.products;
+          // console.log(this.products[0].images);
       });
-  
     }
-      }
+  }
 }
 
