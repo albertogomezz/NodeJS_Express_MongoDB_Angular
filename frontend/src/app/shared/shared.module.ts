@@ -16,6 +16,7 @@ import { CardProductComponent } from '../shared/card-product/card-product.compon
 import { CarouselItemsComponent } from './carousel-items/carousel-items.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { CarouselComponent } from './carousel/carousel.component';
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 @NgModule({
     imports: [
@@ -24,7 +25,8 @@ import { CarouselComponent } from './carousel/carousel.component';
         ReactiveFormsModule,
         HttpClientModule,
         RouterModule,
-        NgbModule
+        NgbModule,
+        InfiniteScrollModule
     ],
     declarations: [
         ListCategoriesComponent,

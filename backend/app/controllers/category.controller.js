@@ -16,16 +16,18 @@ const create = asyncHandler(async (req, res) => {
 });
 
 // TOTES LES CATEGORIES
-
 const findAll = asyncHandler( async (req, res) => {
 
-    const categories = await Category.find();
+    const  {offset, limit} = req.query;
+
+    const categories = await Category.find({}, {}, { skip: Number(offset), limit: Number(limit)});
 
     if (!categories) {
       return res.status(401).json({
         message: "Category not found"
       })
     }
+    
     return res.status(200).json({
       categories: await Promise.all(categories.map( async categories => {
           return await categories.toCategoryResponse()
