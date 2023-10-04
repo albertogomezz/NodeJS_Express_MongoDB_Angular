@@ -49,7 +49,8 @@ category_schema.methods.toCategoryResponse = function(){
 category_schema.methods.toCategoryCarouselResponse = function(){
     return {
         slug: this.slug,
-        image: this.image
+        image: this.image,
+        category_name: this.category_name
     };
 };
 

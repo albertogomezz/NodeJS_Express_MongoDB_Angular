@@ -3,7 +3,8 @@ ngb-carousel {
     margin: 50px auto;
 }
 ngb-carousel img {
-    width: 100%;
+    width: 50%;
+    height: 60%;
     outline: none;
 }
 ngb-carousel {
@@ -16,7 +17,7 @@ ngb-carousel {
 .carousel-item {
     display: flex !important;
     opacity: 0;
-    visibility: hidden;
+    /* visibility: hidden; */
     transition: opacity 1.2s ease-in-out, visibility 1.2s;
     z-index: -1;
 }
@@ -26,7 +27,8 @@ ngb-carousel {
     z-index: 10;
 }
 .carousel-control-prev {
-     z-index: 20;
+    z-index: 20;
+    background-color: black;
 }
 
 .carousel-control-next {
@@ -35,3 +37,21 @@ ngb-carousel {
 .carousel-indicators{
     z-index: 20;
 }
+/* .img_carousel{
+    display: flex !important;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s ease-in-out, visibility 1.2s;
+    z-index: -1;
+
+} */
+.contenedor {
+    text-align: center; /* Centrar horizontalmente */
+    height: 60vh; /* Ajusta la altura según sea necesario */
+    line-height: 50vh; /* Centrar verticalmente */
+}
+  
+  .contenedor img {
+    vertical-align: middle; /* Centrar verticalmente */
+  }
+  
