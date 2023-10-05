@@ -11,7 +11,7 @@ import { offset } from '@popperjs/core';
 export class ListCategoriesComponent {
   
   offset = 0;
-  limit = 3
+  limit = 4;
   categories: Category[] = [];
 
   constructor(private CategoryService: CategoryService) { }
@@ -29,7 +29,7 @@ export class ListCategoriesComponent {
     this.CategoryService.all_categories(params).subscribe(
       (data: any) => {
         this.categories = data.categories;
-        this.limit = this.limit + 3;
+        this.limit = this.limit + 4;
         // console.log(this.categories);      
       }
     );
