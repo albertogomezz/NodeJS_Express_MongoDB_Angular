@@ -18,7 +18,7 @@ export class CarouselService {
     return this.http.get<CarouselHome[]>(URL);
   }
 
-  getCarouselDetails(slug: String): Observable<CarouselDetails[]> {    
+  getCarouselDetails(slug: String| null): Observable<CarouselDetails[]> {    
     return this.http.get<CarouselDetails[]>(`${URL}/${slug}`);
   }
 }
