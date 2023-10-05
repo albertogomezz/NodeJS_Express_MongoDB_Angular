@@ -30,7 +30,7 @@ export class ListCategoriesComponent {
       (data: any) => {
         this.categories = data.categories;
         this.limit = this.limit + 3;
-        console.log(this.categories);      
+        // console.log(this.categories);      
       }
     );
   }

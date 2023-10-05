@@ -1,11 +1,10 @@
-<ngb-carousel *ngIf="category">
-	<ng-template ngbSlide>
-		<div class="picsum-img-wrapper">
-			<img [src]="" alt="Random first slide" />
+<ngb-carousel *ngIf="categories" style="background-color: #1e262d">
+	<ng-template *ngFor="let category of categories;" ngbSlide >
+		<div class="picsum-img-wrapper contenedor" >
+			<img class="img_carousel" src="../../../{{category.image}}" [routerLink]="['/shop/categories/', category.slug]" />
 		</div>
-		<div class="carousel-caption">
-			<h3>{{category.image}}</h3>
-			<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+		<div class="carousel-caption display-4">
+			<h3>{{category.category_name}}</h3>
 		</div>
 	</ng-template>
 </ngb-carousel>

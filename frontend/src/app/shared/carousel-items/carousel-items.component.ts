@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CarouselHome } from 'src/app/core/models/carousel.model';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { Category } from '../../core/models/category.model'
 
 
@@ -11,7 +12,8 @@ import { Category } from '../../core/models/category.model'
 
 export class CarouselItemsComponent implements OnInit {
 
-  @Input() category: CarouselHome[] = [];
+
+  @Input() categories!: CarouselHome[];
 
 
 
@@ -20,7 +22,7 @@ export class CarouselItemsComponent implements OnInit {
 
   constructor(){}
   ngOnInit(): void {
-    console.log('hola ngon init del xikito');
+    console.log('hola ngon init del fill');
   }
 
 

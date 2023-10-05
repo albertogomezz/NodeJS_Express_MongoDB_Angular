@@ -11,7 +11,7 @@ import { CarouselService } from 'src/app/core/services/carousel.service';
 
 export class CarouselComponent implements OnInit {
 
-  categories!: CarouselHome[];
+  items_carousel!: CarouselHome[];
   //  @Input() page!: String;
 
   constructor(private CarouselService: CarouselService) {}
@@ -23,7 +23,7 @@ export class CarouselComponent implements OnInit {
   carousel_categories(): void {
     this.CarouselService.getCarouselHome().subscribe(((data : any) => {
       console.log(data);
-      this.categories = data.products;
+      this.items_carousel = data.categories;
   })) 
   }
 
