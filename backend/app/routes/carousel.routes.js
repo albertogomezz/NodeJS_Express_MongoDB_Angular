@@ -3,6 +3,7 @@ module.exports = (app) => {
 
     //GET ALL
     app.get('/carousel', carousel.get_carousel_category);
+    //GET ALL IMAGES FROM ONE PRODUCT
     app.get('/carousel/:slug', carousel.get_carousel_product);
 
 }

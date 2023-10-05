@@ -4,6 +4,7 @@ import { ProductService } from '../core/services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgControlStatusGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
+import { CarouselDetails } from '../core/models/carousel.model';
 
 @Component({
     selector: 'app-details',
@@ -15,6 +16,7 @@ export class DetailsComponent implements OnInit {
 
     product!: Product;
     slug!: string | null;
+    @Input() page!: CarouselDetails[];
 
     constructor(
         private ProductService: ProductService,
