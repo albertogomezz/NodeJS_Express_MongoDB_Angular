@@ -2,6 +2,7 @@ const Product = require('../models/product.model.js');
 const Category = require('../models/category.model.js');
 const mongoose = require('mongoose');
 const asyncHandler = require('express-async-handler');
+const { off } = require('process');
 
 //create
 const createProduct = asyncHandler(async (req, res) => {
@@ -40,8 +41,10 @@ const createProduct = asyncHandler(async (req, res) => {
 //findALL
 const findAllProduct = asyncHandler(async (req, res) => {
 
+    let products = {};
     let query = {};
-    // let limit = req.query.limit;
+    let offset = req.query.offset;
+    let limit = req.query.limit;
     let id_category = req.query.id_cat;
     let min = req.query.min_price;
     let max = req.query.max_price;
@@ -52,41 +55,33 @@ const findAllProduct = asyncHandler(async (req, res) => {
     }
     if (min != undefined && max == undefined) {
         query = { price: { $gte: min } }
-        // res.send(query)
     }
     if (min == undefined && max != undefined) {
         query = { price: { $lte: max } }
-        // res.send(query)
     }
 
     // Filtro per categoria
-    if (id_category != "") {
+    if (id_category) {
         query.id_cat = id_category;
-        // res.send(query.id_cat)
     }
 
-    // res.send(query)
-
-    if ( query != {} ) {
-        // const products = await Product.find(query);
-        res.send("en filtros")
-    }    
-    if ( query == {} ){
-        // const products = await Product.find().limit(2);
-        res.send("sense filtros")
+    if ( query.id_cat || query.price ) {
+        products = await Product.find(query).limit(limit).skip(offset);
+        const product_count = await Product.find(query).countDocuments();
+    } else {
+        products = await Product.find().limit(limit).skip(offset);
+        const product_count = await Product.find().countDocuments();
     }
-    
-    // res.send(products)
 
-    // if (!products) {
-    //     res.send("Product not found")
-    // }
+    if (!products) {
+        res.send("Product not found")
+    }
 
-    // return res.status(200).json({
-    //     products: await Promise.all(products.map(async products => {
-    //         return await products.toProductResponse();
-    //     }))
-    // });
+    return res.send({
+        products: await Promise.all(products.map(async products => {
+            return await products.toProductResponse();
+        }))
+    });
 });
 
 const findOneProduct = asyncHandler(async (req, res) => {
@@ -146,60 +141,6 @@ const GetProductsByCategory = asyncHandler(async (req, res) => {
     })
     
 });
-
-//     // Find note and update it with the request body
-//     Product.findByIdAndUpdate(req.params.id, {
-//         nombre: req.body.nombre, 
-//         descripcion: req.body.descripcion,
-//         precio: req.body.precio
-//     }, {new: true})
-//     .then(product => {
-//         if(!product) {
-//             return res.status(404).send({
-//                 message: "Note not found with id " + req.params.id
-//             });
-//         }
-//         res.send(product);
-//     }).catch(err => {
-//         if(err.kind === 'ObjectId') {
-//             return res.status(404).send({
-//                 message: "Note not found with id " + req.params.id
-//             });                
-//         }
-//         return res.status(500).send({
-//             message: "Error updating note with id " + req.params.id
-//         });
-//     });
-// };
-
-// // Delete a note with the specified noteId in the request
-// exports.delete = (req, res) => {
-//     // res.json(req.params.id);
-//     Product.findByIdAndRemove(req.params.id)
-//     .then(product => {
-//         // res.json(product);
-//         if(!product) {
-//             return res.status(404).send({
-//                 message: "Note not found with id " + req.params.id
-//             });
-//         }
-//         res.send({message: "Note deleted successfully!"});
-//     }).catch(err => {
-//         res.json('esta dentro del catch');
-//     });
-// };
-
-// exports.deleteAll = (req, res) => {
-//     Product.deleteMany({})
-//     .then(() => {
-//         res.send({ message: "All products deleted successfully!" });
-//     })
-//     .catch(err => {
-//         res.status(500).send({
-//             message: "Some error occurred while deleting all products."
-//         });
-//     });
-// };
 
 module.exports = {
     createProduct,
