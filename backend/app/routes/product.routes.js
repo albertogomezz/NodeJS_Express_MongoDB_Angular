@@ -10,15 +10,9 @@ module.exports = (app) => {
     //GET ONE
     app.get('/products/:slug', products.findOneProduct);
 
-    // Update a Note with noteId
-    // app.put('/products/:slug', products.update);
-
     // Delete a Note with noteId
     app.delete('/products/:slug', products.deleteOneProduct);
 
-        //get products by category
-        app.get('/categories/:slug', products.GetProductsByCategory);
-        
-    // Delete todos los mf products
-    // app.delete('/products_all', products.deleteAll);
+    //get products by category
+    app.get('/categories/:slug', products.GetProductsByCategory);
 }

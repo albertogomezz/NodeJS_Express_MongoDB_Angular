@@ -33,3 +33,5 @@ export class CategoryService {
   //   return this.http.delete<Category[]>(`${URL}`);
   // }
 }
+
+export { Category };

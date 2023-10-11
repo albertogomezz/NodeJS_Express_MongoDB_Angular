@@ -1,0 +1,17 @@
+<div class="container-filters">
+  <div class="filters_box">
+    <div class="category_box">
+      <label for='category' class="etiqueta">Category:</label>
+      <select class="form-control input-lg mr-2" name="category" id="category">
+        <option disabled selected value="">Category</option>
+          <!-- <option *ngFor="let category of listCategories" [value]="category.slug"></option> -->
+      </select>
+    </div>
+    <div class="price_box">
+      <label for='etiquetas' class="etiqueta">Price:</label>
+      <input class="form-control input-lg mr-2" type="number" id="price_min" min="0" step="10" placeholder="Precio Mínimo" >
+      <input class="form-control input-lg mr-2" type="number" id="price_max" min="0" step="10" placeholder="Precio Máximo">
+    </div>
+  </div>
+  <!-- <button class="remove_btn">Remove Filters</button> -->
+</div>

@@ -39,17 +39,54 @@ const createProduct = asyncHandler(async (req, res) => {
 
 //findALL
 const findAllProduct = asyncHandler(async (req, res) => {
-    const products = await Product.find();
-    if (!products) {
-        return res.status(401).json({
-            message: "Product Not Found"
-        });
+
+    let query = {};
+    // let limit = req.query.limit;
+    let id_category = req.query.id_cat;
+    let min = req.query.min_price;
+    let max = req.query.max_price;
+
+    // Between del Preu
+    if (max != undefined && min != undefined) {
+        query = { price: { $gte: min, $lte: max } }
     }
-    return res.status(200).json({
-        products: await Promise.all(products.map(async products => {
-            return await products.toProductResponse();
-        }))
-    });
+    if (min != undefined && max == undefined) {
+        query = { price: { $gte: min } }
+        // res.send(query)
+    }
+    if (min == undefined && max != undefined) {
+        query = { price: { $lte: max } }
+        // res.send(query)
+    }
+
+    // Filtro per categoria
+    if (id_category != "") {
+        query.id_cat = id_category;
+        // res.send(query.id_cat)
+    }
+
+    // res.send(query)
+
+    if ( query != {} ) {
+        // const products = await Product.find(query);
+        res.send("en filtros")
+    }    
+    if ( query == {} ){
+        // const products = await Product.find().limit(2);
+        res.send("sense filtros")
+    }
+    
+    // res.send(products)
+
+    // if (!products) {
+    //     res.send("Product not found")
+    // }
+
+    // return res.status(200).json({
+    //     products: await Promise.all(products.map(async products => {
+    //         return await products.toProductResponse();
+    //     }))
+    // });
 });
 
 const findOneProduct = asyncHandler(async (req, res) => {

@@ -17,6 +17,7 @@ import { CarouselItemsComponent } from './carousel-items/carousel-items.componen
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { CarouselComponent } from './carousel/carousel.component';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { FiltersComponent } from './filters/filters.component';
 
 @NgModule({
     imports: [
@@ -35,7 +36,7 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
         CardProductComponent,
         CarouselItemsComponent,
         CarouselComponent,
-        
+        FiltersComponent
     ],
     exports: [
         ListCategoriesComponent,
@@ -45,7 +46,8 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
         CardProductComponent,
         CardCategoryComponent,
         CarouselItemsComponent,
-        CarouselComponent
+        CarouselComponent,
+        FiltersComponent
     ],
 })
 
