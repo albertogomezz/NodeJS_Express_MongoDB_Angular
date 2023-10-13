@@ -1,8 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Filters } from '../../core/models/filters.model';
 import { Product } from '../../core/models/product.model';
-// import { Category } from '../../core/models/category.model';
-import { Category, CategoryService } from '../../core/services/cateogry.service';
+import { Category } from '../../core/models/category.model';
+// import { Category } from '../../core/services/cateogry.service';
 
 @Component({
   selector: 'app-filters',
@@ -12,9 +13,10 @@ import { Category, CategoryService } from '../../core/services/cateogry.service'
 
 export class FiltersComponent {
 
-  // @Input() all_categories!: Category[];
+  constructor ( private ActivatedRoute: ActivatedRoute, private Router: Router) {}
+
+  @Input() listCategories!: Category[];
 
   ngOnInit(): void {
-    // console.log(this.all_categories);
   }
 }

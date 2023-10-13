@@ -4,7 +4,7 @@
       <label for='category' class="etiqueta">Category:</label>
       <select class="form-control input-lg mr-2" name="category" id="category">
         <option disabled selected value="">Category</option>
-          <!-- <option *ngFor="let category of listCategories" [value]="category.slug"></option> -->
+          <option *ngFor="let category of listCategories" [value]="category.slug">{{category.category_name}}</option>
       </select>
     </div>
     <div class="price_box">

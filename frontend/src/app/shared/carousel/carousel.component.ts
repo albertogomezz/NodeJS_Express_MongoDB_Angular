@@ -29,7 +29,7 @@ export class CarouselComponent implements OnInit {
   carousel_categories(): void {
     this.page = "categories";
     this.CarouselService.getCarouselHome().subscribe(((data : any) => {
-      console.log(data);
+      // console.log(data);
       this.items_carousel = data.categories;
   })) 
   }
@@ -37,10 +37,9 @@ export class CarouselComponent implements OnInit {
     if(this.slug_details){
       this.page = "details";
       this.CarouselService.getCarouselDetails(this.slug_details).subscribe(((data : any) => {
-        console.log(data);
+        // console.log(data);
         this.items_details = data.products.images;
-        console.log(this.items_details);
-        
+        // console.log(this.items_details);
     })) 
     }
   }

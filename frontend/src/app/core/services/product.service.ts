@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
+import { Filters } from '../models/filters.model';
 
 const URL = 'http://localhost:3000/products';
 const URLcat = 'http://localhost:3000/categories';
@@ -13,11 +14,18 @@ const URLcat = 'http://localhost:3000/categories';
 export class ProductService {
     
     constructor(private http: HttpClient) { }
+
     //GET ALL
     get_products(): Observable<Product[]> {
         return this.http.get<Product[]>(URL);
     }
 
+    // get_products(filters : Filters): Observable<Product[]> {
+    //     let params = {};
+    //     params = filters;
+    //     return this.http.get<Product[]>(URL , {params});
+    // }
+    
     //GET ONE
     get_product(slug: String): Observable<Product> {
     return this.http.get<Product>(`${URL}/${slug}`);
