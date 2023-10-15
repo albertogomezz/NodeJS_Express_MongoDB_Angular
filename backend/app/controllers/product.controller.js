@@ -1,8 +1,8 @@
 const Product = require('../models/product.model.js');
 const Category = require('../models/category.model.js');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const asyncHandler = require('express-async-handler');
-const { off } = require('process');
+// const { off } = require('process');
 
 //create
 const createProduct = asyncHandler(async (req, res) => {
@@ -41,46 +41,39 @@ const createProduct = asyncHandler(async (req, res) => {
 //findALL
 const findAllProduct = asyncHandler(async (req, res) => {
 
-    let products = {};
     let query = {};
-    let offset = req.query.offset;
-    let limit = req.query.limit;
-    let id_category = req.query.id_cat;
-    let min = req.query.min_price;
-    let max = req.query.max_price;
+    let transUndefined = (varQuery, otherResult) => {
+        return varQuery != "undefined" && varQuery ? varQuery : otherResult;
+    };
 
-    // Between del Preu
-    if (max != undefined && min != undefined) {
-        query = { price: { $gte: min, $lte: max } }
-    }
-    if (min != undefined && max == undefined) {
-        query = { price: { $gte: min } }
-    }
-    if (min == undefined && max != undefined) {
-        query = { price: { $lte: max } }
+    let limit = transUndefined(req.query.limit, 3);
+    let offset = transUndefined(req.query.offset, 0);
+    let category = transUndefined(req.query.category, "");
+    let name = transUndefined(req.query.name, "");
+    let price_min = transUndefined(req.query.price_min, 0);
+    let price_max = transUndefined(req.query.price_max, Number.MAX_SAFE_INTEGER);
+    let nameReg = new RegExp(name);
+
+    query = {
+        name: { $regex: nameReg },
+        $and: [{ price: { $gte: price_min } }, { price: { $lte: price_max } }],
+    };
+
+    if (category != "") {
+        query.id_cat = category;
     }
 
-    // Filtro per categoria
-    if (id_category) {
-        query.id_cat = id_category;
-    }
-
-    if ( query.id_cat || query.price ) {
-        products = await Product.find(query).limit(limit).skip(offset);
-        const product_count = await Product.find(query).countDocuments();
-    } else {
-        products = await Product.find().limit(limit).skip(offset);
-        const product_count = await Product.find().countDocuments();
-    }
+    const products = await Product.find(query).limit(Number(limit)).skip(Number(offset));
+    const product_count = await Product.find(query).countDocuments();
 
     if (!products) {
-        res.send("Product not found")
+        res.status(404).json({ msg: "Falló" });
     }
 
-    return res.send({
-        products: await Promise.all(products.map(async products => {
-            return await products.toProductResponse();
-        }))
+    return res.status(200).json({
+        products: await Promise.all(products.map(async product => {
+            return await product.toProductResponse();
+        })), product_count: product_count
     });
 });
 
@@ -123,23 +116,25 @@ const deleteOneProduct = asyncHandler(async (req, res) => {
 
 
 const GetProductsByCategory = asyncHandler(async (req, res) => {
+
+    let offset = 0;
+    let limit = 3;
     const slug = req.params;
-    
-    // console.log(slug);
+    let product_count = "";
 
     const category = await Category.findOne(slug).exec();
-    // res.send(category);
+
     if (!category) {
         res.status(400).json({message: "Categoria no encontrada"});
     }
 
     return await res.status(200).json({
         products: await Promise.all(category.products.map(async productId => {
-            const productObj = await Product.findById(productId).exec();
+            const productObj = await Product.findById(productId).skip(offset).limit(limit).exec();
             return await productObj.toProductResponse();
-        }))
+        })),
+        product_count : product_count
     })
-    
 });
 
 module.exports = {

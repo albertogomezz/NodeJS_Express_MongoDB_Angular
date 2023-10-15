@@ -20,11 +20,11 @@ export class ProductService {
         return this.http.get<Product[]>(URL);
     }
 
-    // get_products(filters : Filters): Observable<Product[]> {
-    //     let params = {};
-    //     params = filters;
-    //     return this.http.get<Product[]>(URL , {params});
-    // }
+    get_products_filter(filters : Filters): Observable<Product[]> {
+        let params = {};
+        params = filters;
+        return this.http.get<Product[]>(URL , {params});
+    }
     
     //GET ONE
     get_product(slug: String): Observable<Product> {
@@ -52,9 +52,5 @@ export class ProductService {
 
     getProductsByCategory(slug: String): Observable<Product[]> {
         return this.http.get<Product[]>(`${URLcat}/${slug}`);
-        }
-    // get_products_from_category(slug: String, params: any): Observable<{products: Product[], product_count: number}> {
-    //     return this.apiService.get_products('products/category/', slug, new HttpParams({fromObject:params}));
-    //   }
-    
+    }
 }
