@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Product } from '../models/product.model';
 import { Filters } from '../models/filters.model';
 
@@ -52,5 +52,15 @@ export class ProductService {
 
     getProductsByCategory(slug: String): Observable<Product[]> {
         return this.http.get<Product[]>(`${URLcat}/${slug}`);
-    }
+        }
+
+
+    find_product_name(search: string): Observable<any> {
+        return this.http.get<Product>(`${URL}/list-search/` + search).pipe(
+            map((data) => {
+            console.log(data);
+            return data;
+            })
+        );
+        }
 }

@@ -2,6 +2,7 @@ export * from './layout';
 export * from './shared.module';
 export * from './list-products/list-products.component';
 export * from './list-categories/list-categories.component';
+export * from './search/search.component';
 // export * from './product-details/product-details.component;
 // export * from './carousel-items/carousel-items.component';
 // export * from './carousel/carousel.component';

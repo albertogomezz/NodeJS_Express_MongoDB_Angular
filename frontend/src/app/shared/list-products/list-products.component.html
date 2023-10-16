@@ -1,4 +1,5 @@
-<app-filters (eventofiltros)="get_list_filtered($event)" [listCategories]="listCategories"></app-filters>
+<app-search (searchEvent)="get_list_filtered($event)"></app-search>
+<app-filters  (eventofiltros)="get_list_filtered($event)" [listCategories]="listCategories"></app-filters>
 <div class="productoss">
     <app-card-product *ngFor="let product of products" [products]="product">
 </app-card-product></div>
