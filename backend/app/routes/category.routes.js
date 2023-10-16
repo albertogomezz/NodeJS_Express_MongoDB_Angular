@@ -7,6 +7,9 @@ module.exports = (app) => {
         // Retrieve all Notes
         app.get('/categories', categories.findAll);
 
+        // Retrieve all Notes
+        app.get('/categories_select_filter', categories.findCategoriesSelect);
+
         // Retrieve a single Note with noteId
         // app.get('/categories/:slug', categories.findOne);
 
