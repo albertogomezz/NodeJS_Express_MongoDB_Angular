@@ -50,24 +50,17 @@ export class ProductService {
     return this.http.delete<Product[]>(`${URL}`);
     }
 
-    getProductsByCategory(slug: String, params: any): Observable<Product[]> {
+    getProductsByCategory(slug: String): Observable<Product[]> {
         return this.http.get<Product[]>(`${URLcat}/${slug}`);
-<<<<<<< HEAD
         }
-    // get_products_from_category(slug: String, params: any): Observable<{products: Product[], product_count: number}> {
-    //     return this.apiService.get_products('products/category/', slug, new HttpParams({fromObject:params}));
-    //   }
+
 
     find_product_name(search: string): Observable<any> {
         return this.http.get<Product>(`${URL}/list-search/` + search).pipe(
-          map((data) => {
+            map((data) => {
             console.log(data);
             return data;
-          })
+            })
         );
-      }
-    
-=======
-    }
->>>>>>> 076a561d75f5577912813d0a8fcd6e4ed1230d1f
+        }
 }

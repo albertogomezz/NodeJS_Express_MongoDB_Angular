@@ -3,7 +3,7 @@ import { ProductService } from '../../core/services/product.service';
 import { Product } from '../../core/models/product.model';
 import { ActivatedRoute } from '@angular/router';
 import { Category } from 'src/app/core/models/category.model';
-import { CategoryService } from 'src/app/core/services/cateogry.service';
+import { CategoryService } from 'src/app/core/services/category.service';
 import { Filters } from 'src/app/core/models/filters.model';
 import { Location } from '@angular/common';
 
@@ -19,8 +19,6 @@ export class ListProductsComponent implements OnInit {
   routeFilters!: string | null;
   products: Product[] = [];
   slug_Category!: string | null;
-  routeFilters!: string | null;
-
   listCategories: Category[] = [];
   filters = new Filters();
   offset: number = 0;
@@ -29,7 +27,7 @@ export class ListProductsComponent implements OnInit {
   currentPage: number = 1;
 
 
-  constructor(private productService: ProductService, private ActivatedRoute: ActivatedRoute, private CategoryService: CategoryService){}
+  constructor(private productService: ProductService, private ActivatedRoute: ActivatedRoute, private CategoryService: CategoryService, private Location: Location){}
 
   //Lo que inicia
   ngOnInit(): void {

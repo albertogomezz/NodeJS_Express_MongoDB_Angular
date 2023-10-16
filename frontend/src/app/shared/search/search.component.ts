@@ -15,7 +15,7 @@ export class SearchComponent implements OnInit {
   search_value: string | undefined = '';
   listProducts: Product[] = [];
   filters: Filters = new Filters();
-  routeFilters: string | null;
+  routeFilters!: string | null;
   search: any;
 
 
@@ -25,41 +25,58 @@ export class SearchComponent implements OnInit {
     private ActivatedRoute: ActivatedRoute,
     private Location: Location
   ) {
-    this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
+    // this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
   }
 
-  ngOnInit(): void {
-    this.filters_route();
+  ngOnInit() {
+    
+    // if (this.routeFilters !== null) {
+    //   this.filters = JSON.parse(atob(this.routeFilters));
+    // }
+
     this.search_value = this.filters.name || undefined;
+
   }
 
   public filters_route() {
     if (this.routeFilters !== null) {
       this.filters = JSON.parse(atob(this.routeFilters));
-      this.checkTime(this.filters);
+      // this.checkTime(this.filters);
     }
   }
 
   public type_event(writtingValue: any): void {
-    this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters'); 
+    // this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
     this.search = writtingValue;
-    console.log(this.search);
-    this.searchEvent.emit(this.search);
-    this.Location.replaceState('/shop/' + btoa(JSON.stringify(this.filters)));
-    // console.log(writtingValue);
-    // this.checkTime(writtingValue);
+    this.filters.name = writtingValue;
+
+      setTimeout(() => {
+
+          this.searchEvent.emit(this.filters);
+          // this.Location.replaceState('/shop/' + btoa(JSON.stringify(this.filters)));
+
+        if (this.search.length != 0){  
+          this.getListProducts()
+      }
+    }, 150);
+    this.filters.name = this.search;
+    this.filters.offset = 0;
   }
 
 
-  getList() {
-    this.ProductService.find_product_name(this.search).subscribe(
-      (data : any) => {
-        console.log(data);
-        this.listProducts = data;
-        console.log(this.listProducts);
-    }); 
-  }
 
+    getListProducts() {
+      this.ProductService.find_product_name(this.search).subscribe(
+        (data) => {
+          this.listProducts = data.products;
+          console.log(this.listProducts);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+
+    }
 
   private checkTime(writtingValue: any) {
 
@@ -72,7 +89,7 @@ export class SearchComponent implements OnInit {
           this.searchEvent.emit(this.filters);
           this.Location.replaceState('/shop/' + btoa(JSON.stringify(this.filters)));
         }
-        if (this.search.length != 0)  this.getList();
+        if (this.search.length != 0)  this.getListProducts();
       }
     }, 200);
   }
@@ -84,15 +101,15 @@ export class SearchComponent implements OnInit {
     if (this.routeFilters !== null) {
       this.filters = JSON.parse(atob(this.routeFilters));
     }
-    this.filters.name = this.search;
+    // this.filters.name = this.search;
     this.filters.offset = 0;
-    console.log('Not name: ' + this.filters.name);
+    // console.log('Not name: ' + this.filters.name);
     
   }
 
   public search_event(data: any): void {
     if (typeof data.search_value === 'string') {
-      this.filters.name = data.search_value;
+      // this.filters.name = data.search_value;
       this.filters.offset = 0;
       this.Router.navigate(['/shop/' + btoa(JSON.stringify(this.filters))]);
     }
