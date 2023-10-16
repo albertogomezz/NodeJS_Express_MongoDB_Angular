@@ -81,7 +81,7 @@ export class FiltersComponent implements OnInit {
       this.filters.price_min = undefined;
       this.filters.price_max = undefined;
       // console.log(this.filters);
-      window.location.reload();
+      window.location.assign("http://localhost:4200/shop")
     }
 
     Highlights() {
