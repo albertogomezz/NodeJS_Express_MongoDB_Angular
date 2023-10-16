@@ -117,6 +117,7 @@ const deleteOneProduct = asyncHandler(async (req, res) => {
 
 const GetProductsByCategory = asyncHandler(async (req, res) => {
 
+    // res.json("holaaa")
     let offset = 0;
     let limit = 3;
     const slug = req.params;

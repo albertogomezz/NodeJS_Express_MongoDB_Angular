@@ -24,7 +24,10 @@ export class FiltersComponent implements OnInit {
   price_max: number | undefined;
   price_min: number | undefined;
 
-  constructor( private ActivatedRoute: ActivatedRoute, private Router: Router, private Location: Location ) {}
+  constructor( private ActivatedRoute: ActivatedRoute, private Router: Router, private Location: Location ) 
+  {
+    this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
+  }
 
     ngOnInit() : void {
       // this.ActivatedRoute.snapshot.paramMap.get('filters') != undefined ? this.Highlights() : "";

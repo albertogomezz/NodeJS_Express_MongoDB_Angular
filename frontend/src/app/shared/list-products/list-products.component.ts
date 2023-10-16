@@ -31,12 +31,18 @@ export class ListProductsComponent implements OnInit {
     private ActivatedRoute: ActivatedRoute, 
     private CategoryService: CategoryService, 
     private Location: Location
-    ){}
+    )
+    {
+      // this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('filters');
+    }
 
   //Lo que inicia
   ngOnInit(): void {
     this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('slug');
+    // this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('filters');
 
+    // console.log(this.sl);
+    
 
     this.getListForCategory();    
   
@@ -49,17 +55,17 @@ export class ListProductsComponent implements OnInit {
   
   //Agarrar productes
   get_products_by_cat(): void {
-
+  
     if (this.slug_Category !== null) {
       this.productService.getProductsByCategory(this.slug_Category).subscribe(
         (data: any) => {
           this.products = data.products;
           this.totalPages = Array.from(new Array(Math.ceil(data.product_count/this.limit)), (val, index) => index + 1);
-          // console.log(data.products);
+          console.log(data.products);
         });
       }
     }
-
+  
   get_list_filtered(filters: Filters) {
     this.filters = filters;
       this.productService.get_products_filter(filters).subscribe(
@@ -89,7 +95,7 @@ export class ListProductsComponent implements OnInit {
   }
 
   setPageTo(pageNumber: number) {
-
+    
     this.currentPage = pageNumber;
 
     // if (typeof this.routeFilters === 'string') {
