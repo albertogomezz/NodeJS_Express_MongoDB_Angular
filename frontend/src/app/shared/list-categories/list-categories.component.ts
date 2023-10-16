@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CategoryService } from '../../core/services/cateogry.service'
+import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../../core/services/category.service'
 import { Category } from 'src/app/core/models/category.model';
 import { offset } from '@popperjs/core';
 
@@ -8,7 +8,7 @@ import { offset } from '@popperjs/core';
   templateUrl: './list-categories.component.html',
   styleUrls: ['./list-categories.component.css']
 })
-export class ListCategoriesComponent {
+export class ListCategoriesComponent implements OnInit {
   
   offset = 0;
   limit = 4;

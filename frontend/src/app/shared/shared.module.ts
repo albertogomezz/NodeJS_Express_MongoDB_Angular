@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
+//SEARCH
+import { SearchComponent } from '../shared/search/search.component';
 
 
 //CATEGORIAS
@@ -18,6 +19,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { CarouselComponent } from './carousel/carousel.component';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { FiltersComponent } from './filters/filters.component';
+
+
 
 @NgModule({
     imports: [
@@ -36,7 +39,8 @@ import { FiltersComponent } from './filters/filters.component';
         CardProductComponent,
         CarouselItemsComponent,
         CarouselComponent,
-        FiltersComponent
+        FiltersComponent,
+        SearchComponent
     ],
     exports: [
         ListCategoriesComponent,
@@ -47,7 +51,8 @@ import { FiltersComponent } from './filters/filters.component';
         CardCategoryComponent,
         CarouselItemsComponent,
         CarouselComponent,
-        FiltersComponent
+        FiltersComponent,
+        SearchComponent
     ],
 })
 

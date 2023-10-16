@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Product } from '../models/product.model';
 import { Filters } from '../models/filters.model';
 
@@ -16,15 +16,15 @@ export class ProductService {
     constructor(private http: HttpClient) { }
 
     //GET ALL
-    get_products(): Observable<Product[]> {
-        return this.http.get<Product[]>(URL);
-    }
-
-    // get_products(filters : Filters): Observable<Product[]> {
-    //     let params = {};
-    //     params = filters;
-    //     return this.http.get<Product[]>(URL , {params});
+    // get_products(filters: any): Observable< Product[]> {  
+    //     return this.http.get<Product[]>(`${URL}/`, filters);
     // }
+
+    get_products(filters : Filters): Observable<Product[]> {
+        let params = {};
+        params = filters;
+        return this.http.get<Product[]>(URL , {params});
+    }
     
     //GET ONE
     get_product(slug: String): Observable<Product> {
@@ -50,11 +50,20 @@ export class ProductService {
     return this.http.delete<Product[]>(`${URL}`);
     }
 
-    getProductsByCategory(slug: String): Observable<Product[]> {
+    getProductsByCategory(slug: String, params: any): Observable<Product[]> {
         return this.http.get<Product[]>(`${URLcat}/${slug}`);
         }
     // get_products_from_category(slug: String, params: any): Observable<{products: Product[], product_count: number}> {
     //     return this.apiService.get_products('products/category/', slug, new HttpParams({fromObject:params}));
     //   }
+
+    find_product_name(search: string): Observable<any> {
+        return this.http.get<Product>(`${URL}/list-search/` + search).pipe(
+          map((data) => {
+            console.log(data);
+            return data;
+          })
+        );
+      }
     
 }
