@@ -50,8 +50,7 @@ export class ListProductsComponent implements OnInit {
     this.getListForCategory();    
   
       if(this.slug_Category !== null) {
-        // console.log(window.location.href);
-        this.get_all_products();
+        this.get_products_by_cat();
       }
       else if(this.routeFilters !== null){
         this.refreshRouteFilter();
