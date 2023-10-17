@@ -15,25 +15,22 @@
 }
 
 .remove_btn{
-    display: block;
-    margin: auto;
-    width: 180px;
-    padding: 8px;
-    font-size: 15px;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: #333;
-    background-image: linear-gradient(#fff,#f7f7f7);
-    border: 2px solid #333;
-    border-radius: 8px;
+    width: 70%;
+    padding: 10px;
 }
 
 .remove_btn:hover {
     background: rgb(192, 192, 192);
 }
 
-/*
 
+.subheader{
+    max-width: 80%; /* Ajusta el ancho máximo según tus preferencias */
+    margin: 0 auto; /* Centra el contenido en la página */
+    text-align: center; /* Alinea el texto al centro dentro de la clase */
+}
+
+/*
 .container-filters label {
     padding-top: 10px;
     text-transform: uppercase;

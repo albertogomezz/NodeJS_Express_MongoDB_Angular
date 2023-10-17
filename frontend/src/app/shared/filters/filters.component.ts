@@ -30,21 +30,22 @@ export class FiltersComponent implements OnInit {
   }
 
     ngOnInit() : void {
-      // this.ActivatedRoute.snapshot.paramMap.get('filters') != undefined ? this.Highlights() : "";
+      this.ActivatedRoute.snapshot.paramMap.get('filters') != undefined ? this.Highlights() : "";
       this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
     }
 
     public filter_products() {
 
       this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
-
-      if (this.routeFilters) {
+      console.log(this.routeFilters);
+      
+      if (this.routeFilters != null) {
         this.filters = new Filters();
         this.filters = JSON.parse(atob(this.routeFilters));
+        console.log(this.filters.category);
       } else {
         this.filters = new Filters();
       }
-
       if (this.id_cat) {
         this.filters.category = this.id_cat;
       }
@@ -55,11 +56,8 @@ export class FiltersComponent implements OnInit {
 
       setTimeout(() => {
           this.Location.replaceState('/shop/' + btoa(JSON.stringify(this.filters)));
-          // this.filterEvent.emit(this.filters);
           this.eventofiltros.emit(this.filters);
       }, 200);
-
-      // console.log(this.filters);
 
     }
 
@@ -76,12 +74,10 @@ export class FiltersComponent implements OnInit {
     }
 
     public remove_filters(){
-      
-      this.filters.category = "";
+      window.location.assign("http://localhost:4200/shop")
+      this.filters.category && this.id_cat === "";
       this.filters.price_min = undefined;
       this.filters.price_max = undefined;
-      // console.log(this.filters);
-      window.location.assign("http://localhost:4200/shop")
     }
 
     Highlights() {

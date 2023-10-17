@@ -20,6 +20,7 @@ export class ProductService {
         return this.http.get<Product[]>(URL);
     }
 
+    //FILTERS
     get_products_filter(filters : Filters): Observable<Product[]> {
         let params = {};
         params = filters;
@@ -28,39 +29,39 @@ export class ProductService {
     
     //GET ONE
     get_product(slug: String): Observable<Product> {
-    return this.http.get<Product>(`${URL}/${slug}`);
+        return this.http.get<Product>(`${URL}/${slug}`);
     }
 
     //CREATE
     create_product(product: Product): Observable<Product[]> {
-    return this.http.post<Product[]>(URL, product);
+        return this.http.post<Product[]>(URL, product);
     }
 
     //UPDATE ONE
     update_product(product: Product, slug: String): Observable<Product[]> {
-    return this.http.put<Product[]>(`${URL}/${slug}`, product);
+        return this.http.put<Product[]>(`${URL}/${slug}`, product);
     }
 
     //DELETE ONE
     delete_product(slug: String): Observable<Product[]> {
-    return this.http.delete<Product[]>(`${URL}/${slug}`);
+        return this.http.delete<Product[]>(`${URL}/${slug}`);
     }
+
     //DELETE ALL
     delete_all_products(): Observable<Product[]> {
-    return this.http.delete<Product[]>(`${URL}`);
+        return this.http.delete<Product[]>(`${URL}`);
     }
 
     getProductsByCategory(slug: String): Observable<Product[]> {
         return this.http.get<Product[]>(`${URLcat}/${slug}`);
-        }
-
-
+    }
+    
+    //SEARCH
     find_product_name(search: string): Observable<any> {
-        return this.http.get<Product>(`${URL}/list-search/` + search).pipe(
+        return this.http.get<Product>(`${URL}?name=${search}`).pipe(
             map((data) => {
-            console.log(data);
             return data;
             })
         );
-        }
+    }
 }

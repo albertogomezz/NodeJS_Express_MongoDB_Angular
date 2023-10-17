@@ -26,6 +26,9 @@ export class ListProductsComponent implements OnInit {
   totalPages: Array<number> = [];
   currentPage: number = 1;
 
+
+
+
   constructor(private productService: ProductService, 
     private ActivatedRoute: ActivatedRoute, 
     private CategoryService: CategoryService, 
@@ -39,17 +42,23 @@ export class ListProductsComponent implements OnInit {
   ngOnInit(): void {
     console.log()
     this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('slug');
-    // this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('filters');
-
-    // console.log(this.sl);
+    this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
+    console.log(this.ActivatedRoute.snapshot.paramMap.get('filters'));
+    
     
 
     this.getListForCategory();    
   
       if(this.slug_Category !== null) {
-        this.get_products_by_cat();
-      }else{
+        // console.log(window.location.href);
         this.get_all_products();
+      }
+      else if(this.routeFilters !== null){
+        this.refreshRouteFilter();
+        this.get_list_filtered(this.filters);
+      }else{
+        // console.log(window.location.href);
+        this.get_list_filtered(this.filters);
       }
   }
   
@@ -68,6 +77,7 @@ export class ListProductsComponent implements OnInit {
   
   get_list_filtered(filters: Filters) {
     this.filters = filters;
+    // console.log(JSON.stringify(this.filters));
       this.productService.get_products_filter(filters).subscribe(
         (data: any) => {
           this.products = data.products;
@@ -94,13 +104,23 @@ export class ListProductsComponent implements OnInit {
     );
   }
 
+
+  refreshRouteFilter() {
+    this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
+    if(typeof(this.routeFilters) == "string" ){
+      this.filters = JSON.parse(atob(this.routeFilters));
+    }else{
+      this.filters = new Filters();
+    }
+  }
+
   setPageTo(pageNumber: number) {
     
     this.currentPage = pageNumber;
 
-    // if (typeof this.routeFilters === 'string') {
-    //   this.refresRouteFilter();
-    // }
+    if (typeof this.routeFilters === 'string') {
+      this.refreshRouteFilter();
+    }
 
     if (this.limit) {
       this.filters.limit = this.limit;
@@ -108,6 +128,7 @@ export class ListProductsComponent implements OnInit {
     }
 
     this.Location.replaceState('/shop/' + btoa(JSON.stringify(this.filters)));
+    console.log(this.Location);
     this.get_list_filtered(this.filters);
   }
 }

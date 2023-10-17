@@ -25,35 +25,28 @@ export class SearchComponent implements OnInit {
     private ActivatedRoute: ActivatedRoute,
     private Location: Location
   ) {
-    // this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
+    this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
   }
 
   ngOnInit() {
-    
-    // if (this.routeFilters !== null) {
-    //   this.filters = JSON.parse(atob(this.routeFilters));
-    // }
-
-    this.search_value = this.filters.name || undefined;
-
-  }
-
-  public filters_route() {
     if (this.routeFilters !== null) {
+      console.log('dentro');
       this.filters = JSON.parse(atob(this.routeFilters));
-      // this.checkTime(this.filters);
     }
+    this.search_value = this.filters.name || undefined;
+    // console.log(this.search_value);
   }
+
 
   public type_event(writtingValue: any): void {
-    // this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
+    this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
     this.search = writtingValue;
     this.filters.name = writtingValue;
 
       setTimeout(() => {
 
           this.searchEvent.emit(this.filters);
-          // this.Location.replaceState('/shop/' + btoa(JSON.stringify(this.filters)));
+          this.Location.replaceState('/shop/' + btoa(JSON.stringify(this.filters)));
 
         if (this.search.length != 0){  
           this.getListProducts()
@@ -67,56 +60,23 @@ export class SearchComponent implements OnInit {
 
     getListProducts() {
       this.ProductService.find_product_name(this.search).subscribe(
-        (data) => {
+        (data: any) => {
           this.listProducts = data.products;
           console.log(this.listProducts);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-
+          if(data === null ){
+            console.log('error')
+          }
+        });
+     
     }
 
-  private checkTime(writtingValue: any) {
-
-    let isShop: string = this.Router.url.split('/')[1];
-
-    setTimeout(() => {
-      if (writtingValue === this.search) {
-        if (isShop === 'shop') {
-          // this.notNamefilters();
-          this.searchEvent.emit(this.filters);
-          this.Location.replaceState('/shop/' + btoa(JSON.stringify(this.filters)));
-        }
-        if (this.search.length != 0)  this.getListProducts();
+    public search_event(data: any): void {
+      if (typeof data.search_value === 'string') {
+        this.filters.name = data.search_value;
+        this.filters.offset = 0;
+        this.Router.navigate(['/shop/' + btoa(JSON.stringify(this.filters))]);
+        // console.log(this.filters);
       }
-    }, 200);
-  }
-
-
-  public notNamefilters() {
-    this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
-    console.log(this.routeFilters);
-    if (this.routeFilters !== null) {
-      this.filters = JSON.parse(atob(this.routeFilters));
     }
-    // this.filters.name = this.search;
-    this.filters.offset = 0;
-    // console.log('Not name: ' + this.filters.name);
-    
-  }
-
-  public search_event(data: any): void {
-    if (typeof data.search_value === 'string') {
-      // this.filters.name = data.search_value;
-      this.filters.offset = 0;
-      this.Router.navigate(['/shop/' + btoa(JSON.stringify(this.filters))]);
-    }
-  }
-
-  onItemClickFired(item: any) {
-    console.log(item.name);
-  }
 
 }

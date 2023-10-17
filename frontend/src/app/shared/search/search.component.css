@@ -19,7 +19,7 @@
     }
 
     .search input{
-
+        border-radius: 10px;
         height: 60px;
         text-indent: 25px;
         border: 2px solid #65707a;
@@ -27,6 +27,11 @@
 
     }
 
+    .subheader{
+        max-width: 80%; /* Ajusta el ancho máximo según tus preferencias */
+        margin: 0 auto; /* Centra el contenido en la página */
+        text-align: center; /* Alinea el texto al centro dentro de la clase */
+    }
 
     .search input:focus{
 

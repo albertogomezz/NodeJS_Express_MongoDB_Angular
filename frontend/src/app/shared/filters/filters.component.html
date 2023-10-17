@@ -1,5 +1,5 @@
-<div class="container-fluid bg-white ">
-	<div class="row align-items-center justify-content-center">
+<div class="container-fluid bg-white subheader">
+	<div class="row d-flex justify-content-center align-items-center width: 100%;" style="margin-top: 10px;">
     <div class="col-md-2 pt-3">
       <div class="form-group ">
         <select class="form-control" name="category" id="category" [(ngModel)]="id_cat" (change)="filter_products()">
@@ -18,7 +18,7 @@
         <input type="number" class="form-control" placeholder="Precio Maximo" [(ngModel)]="price_max" min="0" step="5" (input)="filter_products()">
       </div>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2 pt-3">
       <button type="button" class="btn btn-danger btn-block" (click)="remove_filters()">Remove Filters</button>
     </div>
   </div>
