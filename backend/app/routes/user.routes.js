@@ -6,7 +6,7 @@ module.exports = (app) => {
     app.post('/users/login', userController.userLogin);
 
     // Registration
-    app.post('/users', userController.registerUser);
+    app.post('/users/register', userController.registerUser);
 
     // Get Current User
     app.get('/user', verifyJWT, userController.getCurrentUser);

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FooterComponent, HeaderComponent, SharedModule } from './shared';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { AuthModule } from './auth/auth.module';
 
 // Toastr
 // import { ToastrModule } from 'ngx-toastr';
@@ -23,7 +24,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     BrowserModule,
     CarouselModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent,]

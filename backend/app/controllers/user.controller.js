@@ -3,16 +3,16 @@ const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcryptjs');
 
 const registerUser = asyncHandler(async (req, res) => {
-
+    // return res.json(req);
     const { user } = req.body;
-
+    // return res.json(req.body);
     // confirm data
     if (!user || !user.email || !user.username || !user.password) {
         return res.status(400).json({message: "All fields are required"});
     }
 
     const UserExist = await User.findOne({$or : [{username: user.username}, { email: user.email}]});
-
+    
     if (UserExist) {
         return res.status(201).json({
             message:"User exist"
