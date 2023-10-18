@@ -84,15 +84,6 @@ export class ListProductsComponent implements OnInit {
           console.log(this.products);
       });
   }
-
-  get_all_products() {
-    this.productService.get_products().subscribe(
-      (data: any) => {
-        this.products = data.products;
-        this.totalPages = Array.from(new Array(Math.ceil(data.product_count/this.limit)), (val, index) => index + 1);
-        console.log(this.products);
-      });
-  }
   
   //Agarrar les categories pa els filtros
   getListForCategory() {    
