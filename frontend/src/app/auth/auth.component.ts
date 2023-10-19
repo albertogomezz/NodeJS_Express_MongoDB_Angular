@@ -55,7 +55,7 @@ export class AuthComponent {
     this.errors = {errors: {}};
     this.user = this.authForm.value ;
     // this.user ={} ;
-    console.log(this.user);
+    // console.log(this.user);
     // this.user = this.authForm.value;
     // console.log(this.user);
     this.userService.attemptAuth(this.authType, this.user).subscribe(

@@ -29,12 +29,9 @@
     ).pipe(catchError(this.formatErrors));
     }
 
-    post(path: string, body: Object = {}): Observable<any> {
-        console.log(path);
-    return this.http.post(
-        `${environment.api_url}${path}`,
-        JSON.stringify(body)
-    ).pipe(catchError(this.formatErrors));
+    post(path: string, body: any = {}): Observable<any> {
+        console.log(body);
+    return this.http.post(`${environment.api_url}${path}`,body).pipe(catchError(this.formatErrors));
     }
 
     delete(path: any): Observable<any> {

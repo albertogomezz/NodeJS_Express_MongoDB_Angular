@@ -3,20 +3,12 @@ const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcryptjs');
 
 const registerUser = asyncHandler(async (req, res) => {
-    // return res.json(req);
     const { user } = req.body;
-    // return res.json(req.body);
+
+    // return res.json(user);
     // confirm data
     if (!user || !user.email || !user.username || !user.password) {
         return res.status(400).json({message: "All fields are required"});
-    }
-
-    const UserExist = await User.findOne({$or : [{username: user.username}, { email: user.email}]});
-    
-    if (UserExist) {
-        return res.status(201).json({
-            message:"User exist"
-        })
     }
 
     // hash password
@@ -30,33 +22,19 @@ const registerUser = asyncHandler(async (req, res) => {
 
     const createdUser = await User.create(userObject);
 
-    
     if (createdUser) { // user object created successfully
         res.status(201).json({
             user: createdUser.toUserResponse()
         })
+    } else {
+        res.status(422).json({
+            errors: {
+                body: "Unable to register a user"
+            }
+        });
     }
 });
 
-// @desc get currently logged-in user
-// @route GET /api/user
-// @access Private
-// @return User
-const getCurrentUser = asyncHandler(async (req, res) => {
-    // After authentication; email and hashsed password was stored in req
-    const email = req.userEmail;
-
-    const user = await User.findOne({ email }).exec();
-
-    if (!user) {
-        return res.status(404).json({message: "User Not Found"});
-    }
-
-    res.status(200).json({
-        user: user.toUserResponse()
-    })
-
-});
 
 // @desc login for a user
 // @route POST /api/users/login
@@ -88,6 +66,27 @@ const userLogin = asyncHandler(async (req, res) => {
     });
 
 });
+
+// @desc get currently logged-in user
+// @route GET /api/user
+// @access Private
+// @return User
+const getCurrentUser = asyncHandler(async (req, res) => {
+    // After authentication; email and hashsed password was stored in req
+    const email = req.userEmail;
+
+    const user = await User.findOne({ email }).exec();
+
+    if (!user) {
+        return res.status(404).json({message: "User Not Found"});
+    }
+
+    res.status(200).json({
+        user: user.toUserResponse()
+    })
+
+});
+
 
 const updateUser = asyncHandler(async (req, res) => {
     

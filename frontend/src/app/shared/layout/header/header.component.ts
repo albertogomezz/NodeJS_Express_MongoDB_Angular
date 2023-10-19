@@ -1,7 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/core/models/user.model';
 
-// import { User, UserService } from '../../../core';
+import {  UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-header',
@@ -14,33 +15,33 @@ export class HeaderComponent implements OnInit {
   bars: Boolean = false;
 
   constructor(
-    // private userService: UserService,
-    // private cd: ChangeDetectorRef,
-    // private router: Router
+    private userService: UserService,
+    private cd: ChangeDetectorRef,
+    private router: Router
   ) {}
 
-//   currentUser: User;
+  currentUser!: User;
 
   ngOnInit() {
-    // this.userService.currentUser.subscribe(
-    //   (userData) => {
-    //     this.currentUser = userData;
-    //     this.cd.markForCheck();
-    //   }
-    // );
+    this.userService.currentUser.subscribe(
+      (userData) => {
+        this.currentUser = userData;
+        this.cd.markForCheck();
+      }
+    );
   }
 
-//   logout() {
-//     this.userService.purgeAuth();
-//     this.router.navigateByUrl('/');
-//   }
+  logout() {
+    this.userService.purgeAuth();
+    this.router.navigateByUrl('/');
+  }
 
-//   nav_bars() {
-//     if (this.bars == false) {
-//       this.bars = true;
-//     } else {
-//       this.bars = false;
-//     }
-//   }
+  // nav_bars() {
+  //   if (this.bars == false) {
+  //     this.bars = true;
+  //   } else {
+  //     this.bars = false;
+  //   }
+  // }
 
 }
