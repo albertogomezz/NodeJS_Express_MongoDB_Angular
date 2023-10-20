@@ -60,7 +60,7 @@ export class AuthComponent {
     // console.log(this.user);
     this.userService.attemptAuth(this.authType, this.user).subscribe(
       (data: any) => {
-        this.router.navigateByUrl('/') 
+        this.router.navigateByUrl('/')
     } 
       // err => {
       //   this.errors = err;

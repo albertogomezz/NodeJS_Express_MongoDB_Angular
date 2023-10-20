@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 //SEARCH
 import { SearchComponent } from '../shared/search/search.component';
 
+import { ShowAuthedDirective } from './show-authed.directive';
+
 
 //CATEGORIAS
 import { ListCategoriesComponent } from '../shared/list-categories/list-categories.component';
@@ -30,7 +32,7 @@ import { FiltersComponent } from './filters/filters.component';
         HttpClientModule,
         RouterModule,
         NgbModule,
-        InfiniteScrollModule
+        InfiniteScrollModule,
     ],
     declarations: [
         ListCategoriesComponent,
@@ -40,7 +42,8 @@ import { FiltersComponent } from './filters/filters.component';
         CarouselItemsComponent,
         CarouselComponent,
         FiltersComponent,
-        SearchComponent
+        SearchComponent,
+        ShowAuthedDirective
     ],
     exports: [
         ListCategoriesComponent,
@@ -52,7 +55,8 @@ import { FiltersComponent } from './filters/filters.component';
         CarouselItemsComponent,
         CarouselComponent,
         FiltersComponent,
-        SearchComponent
+        SearchComponent,
+        ShowAuthedDirective
     ],
 })
 

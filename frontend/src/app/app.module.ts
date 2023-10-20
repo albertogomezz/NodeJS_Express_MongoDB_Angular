@@ -7,6 +7,8 @@ import { FooterComponent, HeaderComponent, SharedModule } from './shared';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { AuthModule } from './auth/auth.module';
+import { ShowAuthedDirective } from '../app/shared/show-authed.directive';
+import { CoreModule } from './core/core.module';
 
 // Toastr
 // import { ToastrModule } from 'ngx-toastr';
@@ -25,7 +27,8 @@ import { AuthModule } from './auth/auth.module';
     CarouselModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    AuthModule
+    AuthModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent,]

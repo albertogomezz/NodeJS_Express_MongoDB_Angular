@@ -1,4 +1,4 @@
-<div id="header" *appShowAuthed="false"> 
+<div id="header" *ngIf="logged === false" >   <!-- *ngIf="logged === false" -->
     <div class="logo">
       <a routerLink="home">DeepShop</a>
     </div>  
@@ -17,10 +17,10 @@
     </nav>
   </div>
 
-  <!-- <div id="header" *appShowAuthed="true">
+ <div id="header" *ngIf="logged === true">    
     <div class="logo">
       <a routerLink="home">DeepShop</a>
-    </div>  
+    </div>
     <nav>
       <ul>
         <li>
@@ -30,14 +30,17 @@
           <a routerLink="shop">Shop</a>
         </li>
         <li>
-          <h2>{{ currentUser.username }}</h2>
-          <a class="nav-link"
-          [routerLink]="['/profile', currentUser.username]"
+          <a routerLink="settings">Settings</a>
+        </li>
+        <li>
+          <!-- <a routerLink="shop">{{ currentUser.username }}</a> -->
+         <a class="nav-link"
+           [routerLink]="['/profile', currentUser.username]"
           routerLinkActive="active">
-          <img [src]="currentUser.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'" *ngIf="currentUser.image" class="user-pic" alt="user image" />
+          <img [src]="currentUser.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'" *ngIf="currentUser.image" class="user-pic" style="width: 35px; height: 35px;" alt="user image" />
           {{ currentUser.username }}
         </a> 
         </li>
       </ul>
     </nav>
-  </div>  -->
+  </div> 

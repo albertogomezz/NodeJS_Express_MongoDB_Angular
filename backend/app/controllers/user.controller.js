@@ -89,7 +89,6 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 
 
 const updateUser = asyncHandler(async (req, res) => {
-    
     const { user } = req.body;
 
     if (!user) {
