@@ -14,7 +14,7 @@ const verifyJWT = (req, res, next) => {
     // return res.json(token);
     jwt.verify(
         token,
-        process.env.ACCESS_TOKEN_SECRET,
+        process.env.ACCESS_TOKEN_SECRET || "yomogan",
         (err, decoded) => {
             if (err) {
                 return res.status(403).json({ message: 'Forbidden' });

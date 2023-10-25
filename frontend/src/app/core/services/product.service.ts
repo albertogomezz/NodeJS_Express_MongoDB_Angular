@@ -68,9 +68,9 @@ export class ProductService {
 
     favorite(id: String): Observable<any> {
         return this.http.post(`${URLfav}/${id}/favorite`, {})
-      }
+    }
     
-      unfavorite(id: String): Observable<any> {
+    unfavorite(id: String): Observable<any> {
         return this.http.delete(`${URLfav}/${id}/favorite`)
-      }
+    }
 }
