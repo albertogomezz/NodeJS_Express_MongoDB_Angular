@@ -90,7 +90,8 @@ ProductSchema.methods.toProductResponse = async function  (user) {
             images: this.images,
             favorited: false,
             favoritesCount: this.favouritesCount,
-            author:  false
+            author:  authorObj.toProfileUnloggedJSON()
+            
         }
     }
 }

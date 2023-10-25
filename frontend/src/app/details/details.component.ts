@@ -39,7 +39,7 @@ export class DetailsComponent implements OnInit {
                 (data : any) => {
                     this.product = data.products;
                     this.author = data.products.author
-                    console.log(this.author);
+                    console.log(data.products);
                 });
         }
         else{
@@ -59,7 +59,7 @@ export class DetailsComponent implements OnInit {
       }
 
     onToggleFollow(following: boolean) {
-    this.author.following = following;
+    // this.author.following = following;
         console.log(this.author.following);
     }
 }

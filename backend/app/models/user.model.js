@@ -69,12 +69,18 @@ userSchema.methods.toUserResponse = function() {
 };
 
 userSchema.methods.toProfileJSON = function (user) {
-    // return "hola"
     return {
         username: this.username,
         bio: this.bio,
         image: this.image,
         following: user.isFollowing(this._id)
+    }
+};
+userSchema.methods.toProfileUnloggedJSON = function () {
+    return {
+        username: this.username,
+        bio: this.bio,
+        image: this.image
     }
 };
 
