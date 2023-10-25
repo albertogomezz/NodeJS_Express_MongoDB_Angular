@@ -33,10 +33,10 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product'
     }],
-    // followingUsers: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User'
-    // }]
+    followingUsers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 },
     {
         timestamps: true
@@ -52,7 +52,7 @@ userSchema.methods.generateAccessToken = function() {
                 "password": this.password
             }
         },
-        process.env.ACCESS_TOKEN_SECRET,
+        process.env.ACCESS_TOKEN_SECRET || "yomogan",
         { expiresIn: "1d"}
     );
     return accessToken;
@@ -100,5 +100,33 @@ userSchema.methods.unfavorite = function (id) {
     }
     return this.save();
 };
+
+
+//FOLLOWS
+
+userSchema.methods.isFollowing = function (id) {
+    const idStr = id.toString();
+    for (const followingUser of this.followingUsers) {
+        if (followingUser.toString() === idStr) {
+            return true;
+        }
+    }
+    return false;
+};
+
+userSchema.methods.follow = function (id) {
+    if(this.followingUsers.indexOf(id) === -1){
+        this.followingUsers.push(id);
+    }
+    return this.save();
+};
+
+userSchema.methods.unfollow = function (id) {
+    if(this.followingUsers.indexOf(id) !== -1){
+        this.followingUsers.remove(id);
+    }
+    return this.save();
+};
+
 
 module.exports = mongoose.model('User', userSchema);
