@@ -69,11 +69,12 @@ userSchema.methods.toUserResponse = function() {
 };
 
 userSchema.methods.toProfileJSON = function (user) {
+    // return "hola"
     return {
         username: this.username,
         bio: this.bio,
         image: this.image,
-        following: user ? user.isFollowing(this._id) : false
+        following: user.isFollowing(this._id)
     }
 };
 
@@ -105,7 +106,9 @@ userSchema.methods.unfavorite = function (id) {
 //FOLLOWS
 
 userSchema.methods.isFollowing = function (id) {
+    // return id;
     const idStr = id.toString();
+    // return idStr;
     for (const followingUser of this.followingUsers) {
         if (followingUser.toString() === idStr) {
             return true;

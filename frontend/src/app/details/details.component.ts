@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgControlStatusGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { CarouselDetails } from '../core/models/carousel.model';
+import { Profile } from '../core/models/profile.model';
 
 @Component({
     selector: 'app-details',
@@ -15,6 +16,7 @@ import { CarouselDetails } from '../core/models/carousel.model';
 export class DetailsComponent implements OnInit {
 
     product!: Product;
+    author!: Profile;
     slug!: string | null;
     @Input() page!: CarouselDetails[];
 
@@ -35,9 +37,10 @@ export class DetailsComponent implements OnInit {
         if (typeof this.slug === 'string') {
             this.ProductService.get_product(this.slug).subscribe(
                 (data : any) => {
-                  this.product = data.products;
-                  console.log(this.product)
-              });
+                    this.product = data.products;
+                    this.author = data.products.author
+                    console.log(this.author);
+                });
         }
         else{
             console.log('fallo al encontrar el producto');
@@ -54,4 +57,9 @@ export class DetailsComponent implements OnInit {
           this.product.favoritesCount--;
         }
       }
+
+    onToggleFollow(following: boolean) {
+    this.author.following = following;
+        console.log(this.author.following);
+    }
 }

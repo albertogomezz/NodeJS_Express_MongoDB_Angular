@@ -1,0 +1,17 @@
+.fav {
+    position: relative;
+} 
+
+.heart {
+    cursor: pointer;
+}
+.btn.btn-sm.action-btn.btn-outline-secondary {
+    background-color: grey;
+    color: blue;
+}
+
+
+.btn.btn-sm.action-btn.btn-secondary {
+    background-color: grey;
+    color: yellow;
+}

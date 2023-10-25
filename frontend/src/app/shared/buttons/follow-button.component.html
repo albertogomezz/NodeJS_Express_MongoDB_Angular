@@ -1,0 +1,5 @@
+<button class="btn btn-sm action-btn"
+    [ngClass]="{ 'disabled': isSubmitting, 'btn-outline-primary': !profile.following, 'btn-outline-secondary': profile.following }"
+    (click)="toggleFollowing()"> 
+    {{ profile.following ? 'Unfollow' : 'Follow' }} {{ profile.username }}
+</button>

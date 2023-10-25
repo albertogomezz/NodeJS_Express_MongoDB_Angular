@@ -62,7 +62,8 @@ ProductSchema.methods.slugify = async function () {
 
 ProductSchema.methods.toProductResponse = async function  (user) {
 
-    // const authorObj = await User.findById(this.author).exec();
+    const authorObj = await User.findById(this.author).exec();
+
     if (user !== null) {
         // return "hay usuario"
         return {
@@ -75,7 +76,7 @@ ProductSchema.methods.toProductResponse = async function  (user) {
             images: this.images,
             favorited: user.isFavorite(this._id),
             favoritesCount: this.favouritesCount,
-            // author:  authorObj.toProfileJSON(user)
+            author: authorObj.toProfileJSON(user)
         }
     } else {
         // return "no hay usuario"
@@ -89,7 +90,7 @@ ProductSchema.methods.toProductResponse = async function  (user) {
             images: this.images,
             favorited: false,
             favoritesCount: this.favouritesCount,
-            // author:  authorObj.toProfileJSON(user)
+            author:  false
         }
     }
 }

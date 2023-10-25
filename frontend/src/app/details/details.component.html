@@ -10,8 +10,8 @@
                 <p class="price">{{product.price}}€</p>
                 <p class="price">Description:  {{product.description}}€</p>
                 <p class="price">Price: {{product.price}}€</p>
-                <p class="price">Price: {{product.price}}€</p>
-                <p class="price">Price: {{product.price}}€</p>
+                <p class="price">El propietario es: <b>{{product.author.username}} </b></p>
+
             </div>
     </div>
     <app-favorite-button
@@ -19,5 +19,8 @@
         (toggle)="onToggleFavorite($event)">
         {{ product.favorited ? 'Unfavorite' : 'Favorite' }} Article <span class="counter">({{ product.favoritesCount }})</span>
     </app-favorite-button>
-</div>
+
+    <br>
+    <app-follow-button (toggle)="onToggleFollow($event)" [profile]="product.author"></app-follow-button>
+</div>   
 </div>

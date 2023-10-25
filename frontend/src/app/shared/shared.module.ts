@@ -22,6 +22,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { FiltersComponent } from './filters/filters.component';
 import {FavoriteButtonComponent} from './buttons/favorite-button.component';
+import {FollowButtonComponent} from './buttons/follow-button.component';
 
 
 
@@ -45,7 +46,8 @@ import {FavoriteButtonComponent} from './buttons/favorite-button.component';
         FiltersComponent,
         SearchComponent,
         ShowAuthedDirective,
-        FavoriteButtonComponent
+        FavoriteButtonComponent,
+        FollowButtonComponent
     ],
     exports: [
         ListCategoriesComponent,
@@ -59,7 +61,8 @@ import {FavoriteButtonComponent} from './buttons/favorite-button.component';
         FiltersComponent,
         SearchComponent,
         ShowAuthedDirective,
-        FavoriteButtonComponent
+        FavoriteButtonComponent,
+        FollowButtonComponent
     ],
 })
 
