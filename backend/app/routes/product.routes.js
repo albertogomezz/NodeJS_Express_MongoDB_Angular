@@ -11,7 +11,7 @@ module.exports = (app) => {
     app.get('/products', verifyJWTOptional , products.findAllProduct);
 
     //GET ONE
-    app.get('/products/:slug', verifyJWT , products.findOneProduct);
+    app.get('/products/:slug', verifyJWTOptional , products.findOneProduct);
 
     // Delete a Note with noteId
     app.delete('/products/:slug', products.deleteOneProduct);

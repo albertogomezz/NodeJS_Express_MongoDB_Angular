@@ -92,14 +92,18 @@ const findAllProduct = asyncHandler(async (req, res) => {
 });
 
 const findOneProduct = asyncHandler(async (req, res) => {
+
     const products = await Product.findOne(req.params)
+    
+    const user = await User.findById(req.userId);
+
     if (!products) {
         return res.status(401).json({
             message: "Product Not Found"
         });
     }
     return res.status(200).json({
-        products: await products.toProductResponse()
+        products: await products.toProductResponse(user)
     })
 });
 

@@ -62,7 +62,6 @@ ProductSchema.methods.slugify = async function () {
 
 ProductSchema.methods.toProductResponse = async function  (user) {
 
-    // return user;
     // const authorObj = await User.findById(this.author).exec();
     if (user !== null) {
         // return "hay usuario"

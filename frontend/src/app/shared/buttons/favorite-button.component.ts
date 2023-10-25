@@ -34,26 +34,27 @@ export class FavoriteButtonComponent implements OnInit {
 
     if (!this.isLoged) {
         setTimeout(() => { this.Router.navigate(['/login']); }, 600);
-    }
-    
-    if (!this.products.favorited) {
-      this.ProductService.favorite(this.products.slug as String).subscribe({
-        next: data => {
-          console.log(data);
-            this.products.favorited = true;
-            this.isSubmitting = false;
-            this.toggle.emit(true);
-        },
-      });
     } else {
-      this.ProductService.unfavorite(this.products.slug as String).subscribe({
-        next: data => {
-          console.log(data);
-            this.products.favorited = false;
-            this.isSubmitting = false;
-            this.toggle.emit(false);
-        },
-      });
+      
+      if (!this.products.favorited) {
+        this.ProductService.favorite(this.products.slug as String).subscribe({
+          next: data => {
+            console.log(data);
+              this.products.favorited = true;
+              this.isSubmitting = false;
+              this.toggle.emit(true);
+          },
+        });
+      } else {
+        this.ProductService.unfavorite(this.products.slug as String).subscribe({
+          next: data => {
+            console.log(data);
+              this.products.favorited = false;
+              this.isSubmitting = false;
+              this.toggle.emit(false);
+          },
+        });
+      }
     }
   }
 }

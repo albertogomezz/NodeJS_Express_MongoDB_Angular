@@ -43,7 +43,7 @@ export class ListProductsComponent implements OnInit {
     console.log()
     this.slug_Category = this.ActivatedRoute.snapshot.paramMap.get('slug');
     this.routeFilters = this.ActivatedRoute.snapshot.paramMap.get('filters');
-    console.log(this.ActivatedRoute.snapshot.paramMap.get('filters'));
+    // console.log(this.ActivatedRoute.snapshot.paramMap.get('filters'));
     
     
 
@@ -118,7 +118,7 @@ export class ListProductsComponent implements OnInit {
     }
 
     this.Location.replaceState('/shop/' + btoa(JSON.stringify(this.filters)));
-    console.log(this.Location);
+    // console.log(this.Location);
     this.get_list_filtered(this.filters);
   }
 }

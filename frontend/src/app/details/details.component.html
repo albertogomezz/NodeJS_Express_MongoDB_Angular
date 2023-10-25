@@ -14,5 +14,10 @@
                 <p class="price">Price: {{product.price}}€</p>
             </div>
     </div>
+    <app-favorite-button
+        [products]="product"
+        (toggle)="onToggleFavorite($event)">
+        {{ product.favorited ? 'Unfavorite' : 'Favorite' }} Article <span class="counter">({{ product.favoritesCount }})</span>
+    </app-favorite-button>
 </div>
 </div>
