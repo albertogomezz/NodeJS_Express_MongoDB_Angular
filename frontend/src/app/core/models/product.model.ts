@@ -6,4 +6,7 @@ export interface Product {
     images: [],
     img: string,
     id_cat: string;
+    favorited: boolean;
+    favoritesCount: number;
+    // author: Profile;
 }

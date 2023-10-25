@@ -1,0 +1,7 @@
+.fav {
+    position: relative;
+} 
+
+.heart {
+    cursor: pointer;
+}

@@ -21,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { CarouselComponent } from './carousel/carousel.component';
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { FiltersComponent } from './filters/filters.component';
+import {FavoriteButtonComponent} from './buttons/favorite-button.component';
 
 
 
@@ -43,7 +44,8 @@ import { FiltersComponent } from './filters/filters.component';
         CarouselComponent,
         FiltersComponent,
         SearchComponent,
-        ShowAuthedDirective
+        ShowAuthedDirective,
+        FavoriteButtonComponent
     ],
     exports: [
         ListCategoriesComponent,
@@ -56,7 +58,8 @@ import { FiltersComponent } from './filters/filters.component';
         CarouselComponent,
         FiltersComponent,
         SearchComponent,
-        ShowAuthedDirective
+        ShowAuthedDirective,
+        FavoriteButtonComponent
     ],
 })
 

@@ -8,7 +8,12 @@
                         <h5 class="card-title font-weight-bold">{{products.name}}</h5>
                         <p class="card-text">{{products.price}}€</p>
                         <a class="btn details px-auto" [routerLink]="['/details/', products.slug]">View Details</a><br />
-                        <a href="#" class="btn cart px-auto">ADD TO CART</a>
+                        <!-- <a href="#" class="btn cart px-auto">ADD TO CART</a> -->
+                        <app-favorite-button
+                            [products]="products"
+                            (toggle)="onToggleFavorite($event)">
+                            {{ products.favorited ? 'Unfavorite' : 'Favorite' }} Article <span class="counter">({{ products.favoritesCount }})</span>
+                        </app-favorite-button>
                     </div>
                 </div>
             </div>

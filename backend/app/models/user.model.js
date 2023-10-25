@@ -28,11 +28,11 @@ const userSchema = new mongoose.Schema({
     image: {
         type: String,
         default: "https://static.productionready.io/images/smiley-cyrus.jpg"
-    }
-    // favouriteArticles: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Article'
-    // }],
+    },
+    favouriteProduct: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+    }],
     // followingUsers: [{
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: 'User'
@@ -44,8 +44,6 @@ const userSchema = new mongoose.Schema({
 
 userSchema.plugin(uniqueValidator);
 
-// @desc generate access token for a user
-// @required valid email and password
 userSchema.methods.generateAccessToken = function() {
     const accessToken = jwt.sign({
             "user": {
@@ -77,6 +75,30 @@ userSchema.methods.toProfileJSON = function (user) {
         image: this.image,
         following: user ? user.isFollowing(this._id) : false
     }
+};
+
+userSchema.methods.isFavorite = function (id) {
+    const idStr = id.toString();
+    for (const article of this.favouriteProduct) {
+        if (article.toString() === idStr) {
+            return true;
+        }
+    }
+    return false;
+}
+
+userSchema.methods.favorite = function (id) {
+    if(this.favouriteProduct.indexOf(id) === -1){
+        this.favouriteProduct.push(id);
+    }
+    return this.save();
+}
+
+userSchema.methods.unfavorite = function (id) {
+    if(this.favouriteProduct.indexOf(id) !== -1){
+        this.favouriteProduct.remove(id);
+    }
+    return this.save();
 };
 
 module.exports = mongoose.model('User', userSchema);
