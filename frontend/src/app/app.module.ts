@@ -11,8 +11,8 @@ import { ShowAuthedDirective } from '../app/shared/show-authed.directive';
 import { CoreModule } from './core/core.module';
 
 // Toastr
-// import { ToastrModule } from 'ngx-toastr';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     HttpClientModule,
     AuthModule,
-    CoreModule
+    CoreModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent,]
