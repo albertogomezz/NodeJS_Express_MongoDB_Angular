@@ -38,11 +38,11 @@ const ProductSchema = mongoose.Schema({
     favouritesCount: {
         type: Number,
         default: 0
-    }
-    // comments: [{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Comment'
-    // }]
+    },
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+    }]
 });
 
 ProductSchema.plugin(uniqueValidator, { msg: "already taken" });
@@ -113,5 +113,20 @@ ProductSchema.methods.updateFavoriteCount = async function () {
 
     return this.save();
 }
+
+
+ProductSchema.methods.addComment = function (commentId) {
+    if(this.comments.indexOf(commentId) === -1){
+        this.comments.push(commentId);
+    }
+    return this.save();
+};
+
+ProductSchema.methods.removeComment = function (commentId) {
+    if(this.comments.indexOf(commentId) !== -1){
+        this.comments.remove(commentId);
+    }
+    return this.save();
+};
 
 module.exports = mongoose.model('Product', ProductSchema);

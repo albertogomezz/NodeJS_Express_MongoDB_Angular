@@ -43,6 +43,8 @@ require('../routes/product.routes')(app);
 require('../routes/carousel.routes')(app);
 require('../routes/user.routes')(app);
 require('../routes/profile.routes')(app);
+require('../routes/comment.routes')(app);
+
 
 app.listen(process.env.PORT, () => {
   console.log(`Servidor Express en el puerto ${process.env.PORT}`);
