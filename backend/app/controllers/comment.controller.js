@@ -5,7 +5,7 @@ const asyncHandler = require('express-async-handler');
 const { json } = require('body-parser');
 
 const addCommentsToProduct = asyncHandler(async (req, res) => {
-    // return res.json("HOLAA");
+    // return res.json(req.body);
     const id = req.userId;
     // return res.json(id)
     const commenter = await User.findById(id).exec();
@@ -74,7 +74,7 @@ const getCommentsFromProduct = asyncHandler(async (req, res) => {
                 const commentObj = await Comment.findById(commentId).exec();
                 // return res.json(commentObj)
                 // console.log(commentObj);
-                const temp =  await commentObj.toCommentResponse(false);
+                const temp =  await commentObj.toCommentResponse(null);
                 // console.log(temp);
                 return temp;
             }))

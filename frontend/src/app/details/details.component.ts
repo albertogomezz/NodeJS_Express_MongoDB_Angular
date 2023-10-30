@@ -30,7 +30,8 @@ export class DetailsComponent implements OnInit {
     cd: any;
     isSubmitting!: boolean;
     commentFormErrors!: {};
-    commentControl: any;
+    commentControl = new FormControl();
+    logged!: boolean;
 
     constructor(
         private ProductService: ProductService,
@@ -42,9 +43,17 @@ export class DetailsComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+
         this.slug = this.ActivatedRoute.snapshot.paramMap.get('slug');
-        console.log(this.slug);
         this.get_product();
+        
+        this.UserService.isAuthenticated.subscribe(
+            (data) => {
+                this.logged = data;
+                console.log(this.logged);
+            }
+        );
+        this.get_user_author();        
     }
 
     get_product() {
@@ -53,9 +62,10 @@ export class DetailsComponent implements OnInit {
                 (data : any) => {
                     this.product = data.products;
                     this.author = data.products.author
+                    console.log(this.product.name);
                     this.get_comments(this.slug);
                     this.get_user_author();
-                    console.log(data.products);
+                    // console.log(data.products);
                 });
         }
         else{
@@ -81,15 +91,14 @@ export class DetailsComponent implements OnInit {
 //////////////////////////////////////////////////
 
 
-
 get_user_author() {
-    this.UserService.currentUser.subscribe((userData: User) => {
-        this.currentUser = userData;
-        this.user_image = userData.image;
-        this.canModify = String(this.currentUser.username) === String(this.product.author?.username);
-        console.log(this.canModify);
-        
-    });
+    this.UserService.currentUser.subscribe(
+        (userData: User) => {
+            this.currentUser = userData;
+            this.user_image = this.currentUser.image;
+            this.canModify = true;
+        }
+    );
 }
 
 get_comments(product_slug: any) {
@@ -98,63 +107,58 @@ get_comments(product_slug: any) {
         this.CommentService.getAll(product_slug).subscribe((comments) => {
             this.comments = comments;
             console.log(this.comments);
+            if (this.comments.length === 0) {
+                
+                console.log(this.comments);
             
+            }
         });
     }
 }
 
+
 create_comment() {
     this.isSubmitting = true;
     this.commentFormErrors = {};
+    // console.log(this.commentControl.value);
     if (this.product.slug) {
+        // console.log("yeeee");
         const commentBody = this.commentControl.value;
-        this.CommentService.add(this.product.slug, commentBody).subscribe({
-            next: data => {
+        // console.log(commentBody);
+        // console.log(this.product.slug);
+        this.CommentService.add(this.product.slug, commentBody).subscribe(
+            (data: any) => {
+                console.log(data);
                 // this.ToastrService.success("Comment added successfully");
                 console.log("Comment added successfully");
                 this.commentControl.reset('');
                 this.isSubmitting = false;
-                this.cd.markForCheck();
                 this.comments.push(data);
-            },
-            error: error => {
-                // this.ToastrService.error("Comment add error");
-                console.log("Comment add error");
-                this.isSubmitting = false;
-                this.commentFormErrors = error;
-                this.cd.markForCheck();
-            }
-        })
+                window.location.reload();
+            });
+        }
     }
-}
 
 delete_comment(comment: Comment) {
+    // console.log(comment.id);
+    
     if (this.product.slug) {
-        this.CommentService.destroy(comment.id, this.slug).subscribe({
-            next: data => {
-                console.log(data.type);
-                if (data.type == 'success') {
-                    // this.ToastrService.success("Comment deleted");
-                    console.log("Comment deleted");
-                    this.comments = this.comments.filter((item) => item !== comment);
-                    this.cd.markForCheck();
-                }
-            },
-            error: error => { 
-                // this.ToastrService.error(error.msg);
-                console.log("ERROR AT deleted COMMENTS");
-            }
-        })
+
+        this.CommentService.destroy(comment.id, this.slug).subscribe(
+            (data: any) => {
+                // console.log(data);
+                console.log("Comment deleted successfully");
+                // this.ToastrService.success("Comment deleted successfully");
+                console.log(this.comments);                
+                this.comments = this.comments.filter((item) => item !== comment);
+            });
     }
 }
-
 empty_comment() {
     this.commentControl.reset('');
     this.isSubmitting = false;
-    this.cd.markForCheck();
 }
-
-
+///////////////////////////////////////////////
 
 
 }

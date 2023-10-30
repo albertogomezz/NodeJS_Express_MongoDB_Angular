@@ -24,24 +24,15 @@ export class CommentsComponent implements OnInit {
     ) {}
   
     ngOnInit() {
-
         this.subscription = this.userService.currentUser.subscribe(
             (userData: User) => {
-                console.log(this.comment.author.username);
-                console.log(userData.username);
-                
-                if ( userData && userData.username === this.comment.author.username){
-                    this.canModify === true;
-                }else{
-                    this.canModify === false;
-                }
-                this.cd.markForCheck();
-            }            
+                this.canModify = (userData.username === this.comment.author.username);
+                console.log(this.canModify);
+                // this.cd.markForCheck();
+            }
         );
-        console.log(this.subscription);
-        console.log(this.canModify);
     }
-  
+
     ngOnDestroy() {
         this.subscription.unsubscribe();
     }

@@ -16,9 +16,9 @@ export class CommentsService {
 
   add(slug: any, payload: any): Observable<Comment> {
     return this.apiService
-    .post(
-        `/${slug}/comments`,{ comment: { body: payload } }
-    ).pipe(map(data => data.comment));
+    .post(`/${slug}/comments`,{  comment : payload  }
+    ).pipe(map((data) => {return data})
+  );
     }
 
   getAll(slug: any): Observable<Comment[]> {
@@ -26,9 +26,9 @@ export class CommentsService {
       .pipe(map(data => data.comments));
   }
 
-  destroy(commentId: any, articleSlug: any) {
+  destroy(commentId: any, productSlug: any) {
     return this.apiService.delete(
-        `/${articleSlug}/comments/${commentId}`
+        `/${productSlug}/comments/${commentId}`
         );
   }
 

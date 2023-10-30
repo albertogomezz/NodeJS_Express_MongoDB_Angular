@@ -73,7 +73,7 @@ userSchema.methods.toProfileJSON = function (user) {
         username: this.username,
         bio: this.bio,
         image: this.image,
-        following: user.isFollowing(this._id)
+        following: user.Following(this._id)
     }
 };
 userSchema.methods.toProfileUnloggedJSON = function () {
@@ -111,7 +111,7 @@ userSchema.methods.unfavorite = function (id) {
 
 //FOLLOWS
 
-userSchema.methods.isFollowing = function (id) {
+userSchema.methods.Following = function (id) {
     // return id;
     const idStr = id.toString();
     // return idStr;
