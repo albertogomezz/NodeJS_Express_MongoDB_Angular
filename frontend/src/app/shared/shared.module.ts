@@ -23,6 +23,7 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { FiltersComponent } from './filters/filters.component';
 import {FavoriteButtonComponent} from './buttons/favorite-button.component';
 import {FollowButtonComponent} from './buttons/follow-button.component';
+import { CommentsComponent } from './comments/comments.component';
 
 
 
@@ -47,7 +48,9 @@ import {FollowButtonComponent} from './buttons/follow-button.component';
         SearchComponent,
         ShowAuthedDirective,
         FavoriteButtonComponent,
-        FollowButtonComponent
+        FollowButtonComponent,
+        CommentsComponent
+
     ],
     exports: [
         ListCategoriesComponent,
@@ -62,7 +65,8 @@ import {FollowButtonComponent} from './buttons/follow-button.component';
         SearchComponent,
         ShowAuthedDirective,
         FavoriteButtonComponent,
-        FollowButtonComponent
+        FollowButtonComponent,
+        CommentsComponent
     ],
 })
 

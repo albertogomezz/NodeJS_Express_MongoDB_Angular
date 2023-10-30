@@ -22,5 +22,11 @@
 
     <br>
     <app-follow-button (toggle)="onToggleFollow($event)" [profile]="product.author"></app-follow-button>
+    <br>
+    <br>
+    <hr>
+    <h2>Comments about  <b>{{product.name}} :</b></h2>
+    <app-comments *ngFor="let comment of comments" [comment]="comment" (deleteComment)="delete_comment(comment)"></app-comments>
+
 </div>   
 </div>

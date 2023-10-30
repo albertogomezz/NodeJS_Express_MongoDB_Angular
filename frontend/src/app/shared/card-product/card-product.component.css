@@ -1,26 +1,26 @@
-body{
-    background:#E0E0E0;
-}
-.details {
-    border: 1.5px solid grey;
-    color: #212121;
-    width: 100%;
-    height: auto;
-    box-shadow: 0px 0px 10px #212121;
-    transition: background-color 0.3s, transform 0.3s;
-    transform: scale(1);
-}
+    body{
+        background:#E0E0E0;
+    }
+    .details {
+        border: 1.5px solid grey;
+        color: #212121;
+        width: 100%;
+        height: auto;
+        box-shadow: 0px 0px 5px #212121;
+        transition: background-color 0.3s, transform 0.3s;
+        transform: scale(1);
+    }
 
-.details:hover {
-    background-color: rgb(255, 255, 255); /* Cambia el color de fondo al hacer hover */
-    transform: scale(1.05);
-}
+    .details:hover {
+        background-color: rgb(255, 255, 255);
+        transform: scale(1.05);
+    }
 
-.prueba2{
-    width: 270px;
-}
+    .prueba2{
+        width: 270px;
+    }
         
-.cart {
+    .cart {
             background-color: #212121;
             color: white;
             margin-top: 10px;
@@ -35,8 +35,8 @@ body{
         }
 
         .cart:hover {
-            background-color: rgb(156, 156, 156); /* Cambia el color de fondo al hacer hover */
-            transform: scale(1.05); /* Cambia el color de fondo al hacer hover */
+            background-color: rgb(156, 156, 156); 
+            transform: scale(1.05); 
         }
         .card-body {
             width: 200%;
@@ -51,8 +51,8 @@ body{
         }
 
         .card {
-            width: 350%; /* Cambié fit-content a 100% para ocupar todo el ancho disponible */
-            margin: 10px; /* Añadido un margen entre las tarjetas */
+            width: 350%; 
+            margin: 10px; 
             box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
             border-radius: 5px;
             padding-bottom: 10px;
@@ -60,9 +60,11 @@ body{
         
         
         .card-body {
-            width: 100%; /* Cambié fit-content a 100% para ocupar todo el ancho disponible */
+            width: 100%;
         }
         
         .btn {
             border-radius: 0;
         }
+
+        

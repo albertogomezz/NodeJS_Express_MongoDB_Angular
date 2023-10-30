@@ -1,0 +1,10 @@
+<div class="comment initial">
+    <div class="comment-avatar-container" >  
+        <img class="comment-avatar" src="{{comment.author.image}}"/>
+    </div>
+    <h2 class="comment-title">Author: {{ comment.author.username }}</h2>
+    <p class="comment-text">{{ comment.body }}</p>
+    <p class="comment-time-stamp">{{ comment.createdAt | date: 'short'}}</p>
+    <div class="comment-delete-icon" ><i class="fa-solid fa-trash-can" (click)="deleteClicked()"></i></div>
+ </div>                                <!-- *appShowAuthed="true" -->
+<!-- <h1>Hola COmnentaris componente</h1> --> <!--  [routerLink]="['/profile', comment.author.username]"-->
