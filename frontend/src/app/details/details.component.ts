@@ -107,10 +107,9 @@ export class DetailsComponent implements OnInit {
 
     onToggleFollow(following: boolean) {
     this.author.following = following;
-        console.log(this.author.following);
+        // console.log(this.author.following);
     }
 //////////////////////////////////////////////////
-
 
 get_user_author() {
     this.UserService.currentUser.subscribe(
