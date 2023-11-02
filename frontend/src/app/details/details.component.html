@@ -1,55 +1,16 @@
-    <app-carousel></app-carousel>
+<app-carousel></app-carousel>
 
-<div class="details_page">
-    <div *ngIf="!product">No product</div>
-    <div class="product" *ngIf="product">
-        <div class="product-info">
-            <div class="title">
-                <!-- <h3>Specifications:</h3> <br> -->
-                <h3>{{product.name}}</h3>
-                <!-- <p class="price">Price: {{product.price}} €</p> -->
-            </div>
-            <div class="product-bio">
-                <div class="description"><strong>Description: </strong>{{product.description}}.</div>
-                <div class="category"><strong>Author: </strong><a [routerLink]="['/profile', product.author.username]">{{product.author.username}}</a></div>
-                <div class="price"><strong>Price: </strong>{{product.price}}€</div>
-                <app-favorite-button
-        [products]="product"
-        (toggle)="onToggleFavorite($event)">
-        {{ product.favorited ? 'Unfavorite' : 'Favorite' }} Article <span class="counter">({{ product.favoritesCount }})</span>
-    </app-favorite-button>
-    <app-follow-button (toggle)="onToggleFollow($event)" [profile]="product.author"></app-follow-button>
-            </div>
-        </div>
-    </div> <!-- fin del product  -->
-    <hr>
-    <h3 class=" product-info title">Comment Section: </h3>
-    <br>
-    <div class="comments-section">
-        
-    <app-comments *ngFor="let comment of comments" [comment]="comment" (deleteComment)="delete_comment(comment)"></app-comments>
-        
-        <div class="comment" *ngIf="comments.length === 0">
-            <p>Be the first to comment on this article.</p>
-        </div>
 
-        <div class="create-comment" *ngIf="logged === true">
-            <form (ngSubmit)="create_comment()">
-                <div class="comment-new">
-                    <div class="comment-avatar-container">
-                        <img class="comment-avatar" src={{user_image}}/>
-                    </div>
-                    <fieldset [disabled]="isSubmitting">
-                        <textarea class="comment-textarea" name="enter-comment" placeholder="Write a comment..." [formControl]="commentControl"></textarea>
-                        <div class="comment-actions">
-                            <button class="post" type="submit">COMMENT</button>
-                            <button class="cancel" type="button" (click)="empty_comment()">CANCEL</button>
-                        </div>
-                    </fieldset>
+    <div class="details_page">
+        <div *ngIf="!product">No product</div>
+        <div class="product" *ngIf="product">
+            <div class="product-info">
+                <div class="title">
+                    <h3>{{product.name}}</h3>
                 </div>
                 <div class="product-bio">
                     <div class="description"><strong>Description: </strong>{{product.description}}.</div>
-                    <div class="category"><strong>Author: </strong>{{product.author.username}}</div>
+                    <div class="category"><strong>Author: </strong><a [routerLink]="['/profile', product.author.username]">{{product.author.username}}</a></div>
                     <div class="price"><strong>Price: </strong>{{product.price}}€</div>
 
                 
