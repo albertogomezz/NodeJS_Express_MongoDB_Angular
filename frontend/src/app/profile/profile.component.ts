@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { Location } from '@angular/common';
@@ -27,8 +27,8 @@ export class ProfileComponent {
   num_follows: any;
   author!: Profile;
   profile_user!: Profile;
-  followers!:Follower_follow;
-  follows!:Follower_follow;
+  followers: Follower_follow[] = [{username: '', bio: '', image: ''}];
+  follow: Follower_follow[] = [{username: '', bio: '', image: ''}];
   user_logged!: User;
   username_profile: any;
   products: Product[] = [];
@@ -38,7 +38,7 @@ export class ProfileComponent {
     private Location: Location,
     private ProfileService: ProfileService,
     private userService: UserService,
-    ){}
+  ){}
 
   ngOnInit(): void { 
 
@@ -51,9 +51,10 @@ export class ProfileComponent {
 
         this.products = data.profile.products
         this.followers = data.profile.followers
-        this.follows = data.profile.follows
+        this.follow = data.profile.follows
 
         console.log(data.profile);
+        console.log(this.follow);
         this.author = data.profile;
         
     });

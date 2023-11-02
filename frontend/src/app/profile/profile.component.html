@@ -29,14 +29,12 @@
 
 	<div *ngIf="pages_profile === 'followers'">	
 		<div class="product-list">
-			<ul>
-				<li><button></button></li>
-			</ul>
+				<app-follow-list *ngFor="let follower of followers" [followersss]="follower" [pages_profile]="pages_profile"></app-follow-list>
 		</div>
 	</div>
 
 	<div *ngIf="pages_profile === 'follows'">	
-		<h1>Dentro de follows</h1>
+		<app-follow-list *ngFor="let follow of follow" [follow]="follow" [pages_profile]="pages_profile"></app-follow-list>
 	</div>
 
 	<div class="row" *ngIf="pages_profile === 'products'">
