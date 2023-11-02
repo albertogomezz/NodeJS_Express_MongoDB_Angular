@@ -5,6 +5,7 @@ import { Profile } from '../models/profile.model';
 import { map } from 'rxjs/operators';
 
 const URL = 'http://localhost:3000';
+const URL_profile = 'http://localhost:3000/profile';
 
 @Injectable({
     providedIn: 'root'
@@ -23,5 +24,9 @@ export class ProfileService {
 
     unfollow(username: string): Observable<any> {
         return this.http.delete<any>(`${URL}/${username}/follow`);
+    }
+
+    get_user_profile(username: any): Observable<any> {
+        return this.http.get<any>(`${URL_profile}/${username}`);
     }
 }

@@ -62,10 +62,10 @@ export class DetailsComponent implements OnInit {
                 (data : any) => {
                     this.product = data.products;
                     this.author = data.products.author
-                    console.log(this.product.name);
+                    // console.log(this.product.name);
                     this.get_comments(this.slug);
                     this.get_user_author();
-                    // console.log(data.products);
+                    // console.log(this.author);
                 });
         }
         else{
@@ -86,10 +86,9 @@ export class DetailsComponent implements OnInit {
 
     onToggleFollow(following: boolean) {
     this.author.following = following;
-        console.log(this.author.following);
+        // console.log(this.author.following);
     }
 //////////////////////////////////////////////////
-
 
 get_user_author() {
     this.UserService.currentUser.subscribe(
@@ -106,10 +105,10 @@ get_comments(product_slug: any) {
     if (product_slug) {
         this.CommentService.getAll(product_slug).subscribe((comments) => {
             this.comments = comments;
-            console.log(this.comments);
+            // console.log(this.comments);
             if (this.comments.length === 0) {
                 
-                console.log(this.comments);
+                // console.log(this.comments);
             
             }
         });
@@ -154,6 +153,7 @@ delete_comment(comment: Comment) {
             });
     }
 }
+
 empty_comment() {
     this.commentControl.reset('');
     this.isSubmitting = false;

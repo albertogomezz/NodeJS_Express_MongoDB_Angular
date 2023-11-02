@@ -1,3 +1,4 @@
+const { profile } = require('console');
 
 
 module.exports = (app) => {
@@ -15,4 +16,8 @@ app.post('/:username/follow', verifyJWT, profileController.followUser);
 
 // unfollow a user
 app.delete('/:username/follow', verifyJWT, profileController.unFollowUser);
+
+// Get user profile
+app.get('/profile/:username', verifyJWTOptional, profileController.getProfile_User);
+
 }

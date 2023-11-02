@@ -17,7 +17,7 @@
     </nav>
   </div>
 
- <div id="header" *ngIf="logged === true">    
+  <div id="header" *ngIf="logged === true">    
     <div class="logo">
       <a routerLink="home">DeepShop</a>
     </div>
@@ -33,9 +33,8 @@
           <a routerLink="settings">Settings</a>
         </li>
         <li>
-          <!-- <a routerLink="shop">{{ currentUser.username }}</a> -->
-         <a class="nav-link"
-           [routerLink]="['/profile', currentUser.username]"
+        <a class="nav-link"
+          [routerLink]="['/profile/me', currentUser.username]"
           routerLinkActive="active">
           <img [src]="currentUser.image || 'https://static.productionready.io/images/smiley-cyrus.jpg'" *ngIf="currentUser.image" class="user-pic" style="width: 35px; height: 35px;" alt="user image" />
           {{ currentUser.username }}

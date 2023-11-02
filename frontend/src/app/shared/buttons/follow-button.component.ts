@@ -34,8 +34,7 @@ export class FollowButtonComponent implements OnInit {
   ngOnInit(): void { }
 
   toggleFollowing() {
-    // console.log(this.profile.following);
-
+    // console.log(this.profile);
 
     this.isSubmitting = true;
     this.userService.isAuthenticated.subscribe({
@@ -64,8 +63,8 @@ export class FollowButtonComponent implements OnInit {
           next: data => {
             console.log(data);
             this.profile.following = true;
-              this.isSubmitting = false;
-              this.toggle.emit(true);
+            this.isSubmitting = false;
+            this.toggle.emit(true);
           },
         });
       } else {
@@ -73,8 +72,8 @@ export class FollowButtonComponent implements OnInit {
           next: data => {
             console.log(data);
             this.profile.following = false;
-              this.isSubmitting = false;
-              this.toggle.emit(false);
+            this.isSubmitting = false;
+            this.toggle.emit(false);
           },
         });
       }

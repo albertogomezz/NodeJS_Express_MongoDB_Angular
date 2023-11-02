@@ -27,7 +27,7 @@ export class CommentsComponent implements OnInit {
         this.subscription = this.userService.currentUser.subscribe(
             (userData: User) => {
                 this.canModify = (userData.username === this.comment.author.username);
-                console.log(this.canModify);
+                // console.log(this.canModify);
                 // this.cd.markForCheck();
             }
         );
