@@ -5,10 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 //SEARCH
 import { SearchComponent } from '../shared/search/search.component';
-
 import { ShowAuthedDirective } from './show-authed.directive';
-
-
 //CATEGORIAS
 import { ListCategoriesComponent } from '../shared/list-categories/list-categories.component';
 import { CardCategoryComponent } from '../shared/card-category/card-category.component';
@@ -16,14 +13,17 @@ import { CardCategoryComponent } from '../shared/card-category/card-category.com
 //PRODUCTOS
 import { ListProductsComponent } from '../shared/list-products/list-products.component';
 import { CardProductComponent } from '../shared/card-product/card-product.component';
+//Carousel
 import { CarouselItemsComponent } from './carousel-items/carousel-items.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { CarouselComponent } from './carousel/carousel.component';
+
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { FiltersComponent } from './filters/filters.component';
 import {FavoriteButtonComponent} from './buttons/favorite-button.component';
 import {FollowButtonComponent} from './buttons/follow-button.component';
 import { CommentsComponent } from './comments/comments.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { FollowListComponent } from './follow-list/follow-list.component';
 
 
 
@@ -49,7 +49,8 @@ import { CommentsComponent } from './comments/comments.component';
         ShowAuthedDirective,
         FavoriteButtonComponent,
         FollowButtonComponent,
-        CommentsComponent
+        CommentsComponent,
+        FollowListComponent
 
     ],
     exports: [
@@ -66,7 +67,8 @@ import { CommentsComponent } from './comments/comments.component';
         ShowAuthedDirective,
         FavoriteButtonComponent,
         FollowButtonComponent,
-        CommentsComponent
+        CommentsComponent,
+        FollowListComponent
     ],
 })
 
