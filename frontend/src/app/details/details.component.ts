@@ -32,8 +32,12 @@ export class DetailsComponent implements OnInit {
     commentFormErrors!: {};
     commentControl = new FormControl();
     logged!: boolean;
+    NoComments!: boolean;
+    isDeleting!: boolean;
+    
 
     constructor(
+        private route : ActivatedRoute,
         private ProductService: ProductService,
         private CommentService: CommentsService,
         private UserService: UserService,
@@ -44,35 +48,52 @@ export class DetailsComponent implements OnInit {
 
     ngOnInit(): void {
 
-        this.slug = this.ActivatedRoute.snapshot.paramMap.get('slug');
-        this.get_product();
+        // this.slug = this.ActivatedRoute.snapshot.paramMap.get('slug');
+        this.route.data.subscribe(
+            (data: any) => {
+                this.slug = data.product.products.slug;
+                this.product = data.product.products;
+                this.author = data.product.products.author
+                // console.log(this.slug);
+                this.get_comments(this.slug);
+                this.get_user_author();
+                // console.log(this.currentUser.username);
+                // console.log(this.author.username);
+                if(this.currentUser.username === this.author.username){
+                    this.canModify = true;
+                } else {
+                    this.canModify = false;
+                }
+        }
+        );
+        
         
         this.UserService.isAuthenticated.subscribe(
             (data) => {
                 this.logged = data;
-                console.log(this.logged);
+                // console.log(this.logged, "logged");
             }
         );
-        this.get_user_author();        
+        // this.get_user_author();      
     }
 
-    get_product() {
-        if (typeof this.slug === 'string') {
-            this.ProductService.get_product(this.slug).subscribe(
-                (data : any) => {
-                    this.product = data.products;
-                    this.author = data.products.author
-                    console.log(this.product.name);
-                    this.get_comments(this.slug);
-                    this.get_user_author();
-                    // console.log(data.products);
-                });
-        }
-        else{
-            console.log('fallo al encontrar el producto');
-            this.router.navigate(['/']);
-        }
-    }
+    // get_product() {
+    //     if (typeof this.slug === 'string') {
+    //         this.ProductService.get_product(this.slug).subscribe(
+    //             (data : any) => {
+    //                 this.product = data.products;
+    //                 this.author = data.products.author
+    //                 console.log(this.product.name);
+    //                 this.get_comments(this.slug);
+    //                 this.get_user_author();
+    //                 // console.log(data.products);
+    //             });
+    //     }
+    //     else{
+    //         console.log('fallo al encontrar el producto');
+    //         this.router.navigate(['/']);
+    //     }
+    // }
 
     onToggleFavorite(favorited: boolean) {
         this.product.favorited = favorited;
@@ -96,7 +117,7 @@ get_user_author() {
         (userData: User) => {
             this.currentUser = userData;
             this.user_image = this.currentUser.image;
-            this.canModify = true;
+            // this.canModify = true;
         }
     );
 }
@@ -106,11 +127,12 @@ get_comments(product_slug: any) {
     if (product_slug) {
         this.CommentService.getAll(product_slug).subscribe((comments) => {
             this.comments = comments;
-            console.log(this.comments);
+            // console.log(this.comments.length);
             if (this.comments.length === 0) {
-                
-                console.log(this.comments);
-            
+                console.log("No comments");
+                this.NoComments = true;
+            }else{
+                this.NoComments = false;
             }
         });
     }
@@ -148,12 +170,29 @@ delete_comment(comment: Comment) {
             (data: any) => {
                 // console.log(data);
                 console.log("Comment deleted successfully");
+
                 // this.ToastrService.success("Comment deleted successfully");
                 console.log(this.comments);                
                 this.comments = this.comments.filter((item) => item !== comment);
             });
     }
 }
+
+
+deleteProduct() {
+    this.isDeleting = true;
+    // console.log(this.slug);
+    
+    this.ProductService.delete_product(this.slug)
+    .subscribe(
+        (data: any) => {
+            // console.log(data);
+            this.router.navigateByUrl('/shop');
+            console.log("Comment deleted successfully");
+            // console.log(this.comments);                
+        });
+}
+
 empty_comment() {
     this.commentControl.reset('');
     this.isSubmitting = false;

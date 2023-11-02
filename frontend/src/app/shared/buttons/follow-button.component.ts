@@ -57,7 +57,7 @@ export class FollowButtonComponent implements OnInit {
         // this.toastr.error("Login for follow");
         console.log("No puedes seguirte a ti mismo");
     }
-    //ELSE - When user is logged
+    //ELSE - When user isnt logged
     else {
       if (!this.profile.following) {
         this.profileService.follow(this.profile.username).subscribe({

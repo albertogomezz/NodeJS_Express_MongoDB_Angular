@@ -109,12 +109,12 @@ const findOneProduct = asyncHandler(async (req, res) => {
 
 //DELETE ONE
 const deleteOneProduct = asyncHandler(async (req, res) => {
-
+    // return res.json("holaaa");
     const slug = req.params;
 
     // res.send(slug);
     const product = await Product.findOne(slug).exec();
-
+    // res.send(product);
     // res.send(product);
     if (!product) {
         res.status(400).json({message: "Producto no encontrado"});
@@ -128,8 +128,11 @@ const deleteOneProduct = asyncHandler(async (req, res) => {
         res.status(400).json({message: "Ha ocurrido un error"});
     }
 
+    await Product.deleteOne({ _id: product._id });
     await category.removeProduct(product._id)
-
+    return res.status(200).json({
+        message: "Producto eliminado"
+    });
 });
 
 const GetProductsByCategory = asyncHandler(async (req, res) => {
@@ -222,36 +225,32 @@ const unfavoriteProduct = asyncHandler(async (req, res) => {
     });
 });
 
-// const updateProduct = asyncHandler(async (req, res) => {
+const updateProduct = asyncHandler(async (req, res) => {
 
-//     const  userId  = req.userId;
+    const  userId  = req.userId;
 
-//     const { product } = req.body;
+    const  product  = req.body;
+    const { slug } = req.params;
+    // return res.json(req.params);
+    const loginUser = await User.findById(userId).exec();
 
-//     const { slug } = req.params;
+    const target = await Product.findOne({ slug }).exec();
 
-//     const loginUser = await User.findById(userId).exec();
+    if (product.name) {
+        target.name = product.name;
+    }
+    if (product.description) {
+        target.description = product.description;
+    }
+    if (product.price) {
+        target.price = product.price;
+    }
 
-//     const target = await Product.findOne({ slug }).exec();
-
-//     if (product.title) {
-//         target.title = product.title;
-//     }
-//     if (product.description) {
-//         target.description = product.description;
-//     }
-//     if (product.body) {
-//         target.body = product.body;
-//     }
-//     if (product.tagList) {
-//         target.tagList = product.tagList;
-//     }
-
-//     await target.save();
-//     return res.status(200).json({
-//         article: await target.toProductResponse(loginUser)
-//     })
-// });
+    await target.save();
+    return res.status(200).json({
+        article: await target.toProductResponse(loginUser)
+    })
+});
 
 module.exports = {
     createProduct,
@@ -260,6 +259,6 @@ module.exports = {
     deleteOneProduct,
     GetProductsByCategory,
     favouriteProduct,
-    unfavoriteProduct
-    // updateProduct
+    unfavoriteProduct,
+    updateProduct
 }

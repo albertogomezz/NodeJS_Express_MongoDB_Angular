@@ -25,5 +25,6 @@ module.exports = (app) => {
     //Unfavorite
     app.delete('/:slug/favorite', verifyJWT, products.unfavoriteProduct);
 
-    // app.put('/:slug', verifyJWT, products.updateProduct);
+    //Update
+    app.put('/products/:slug', verifyJWT, products.updateProduct);
 }

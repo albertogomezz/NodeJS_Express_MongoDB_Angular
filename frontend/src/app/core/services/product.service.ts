@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { Product } from '../models/product.model';
 import { Filters } from '../models/filters.model';
 
@@ -44,7 +44,7 @@ export class ProductService {
     }
 
     //DELETE ONE
-    delete_product(slug: String): Observable<Product[]> {
+    delete_product(slug: any): Observable<Product[]> {
         return this.http.delete<Product[]>(`${URL}/${slug}`);
     }
 

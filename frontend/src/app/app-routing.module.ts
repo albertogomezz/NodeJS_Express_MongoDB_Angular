@@ -20,6 +20,9 @@ const routes: Routes = [
   },{
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then(m => m.SettingsModule)
+  },{
+    path: 'editor',
+    loadChildren: () => import('./editor/editor.module').then(m => m.EditorModule)
   }
 ];
 
