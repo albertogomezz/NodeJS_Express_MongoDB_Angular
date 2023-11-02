@@ -13,7 +13,6 @@
                     <div class="category"><strong>Author: </strong><a [routerLink]="['/profile', product.author.username]">{{product.author.username}}</a></div>
                     <div class="price"><strong>Price: </strong>{{product.price}}€</div>
 
-                
                     <span *ngIf="canModify === true">
                         <!-- EDIT PRODUCT -->
                         <a class="btn btn-sm btn-outline-primary"

@@ -7,6 +7,7 @@ import { Profile } from '../core/models/profile.model';
 import { Follower_follow } from '../core/models/follower_follow.model';
 import { UserService } from '../core/services/user.service';
 import { User } from '../core/models/user.model';
+import { Product } from '../core/models/product.model';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,7 @@ export class ProfileComponent {
 
   username!: string | null;
   // profile_user: Profile[] = [];
-  pages_profile: string = "followers";
+  pages_profile: string = "products";
   settings_buttons!: boolean;
   username_user: any;
   img: any;
@@ -30,6 +31,7 @@ export class ProfileComponent {
   follows!:Follower_follow;
   user_logged!: User;
   username_profile: any;
+  products: Product[] = [];
 
   constructor(
     private ActivatedRoute: ActivatedRoute, 
@@ -47,10 +49,11 @@ export class ProfileComponent {
 
         this.profile_user = data.profile;
 
+        this.products = data.profile.products
         this.followers = data.profile.followers
         this.follows = data.profile.follows
 
-        console.log(this.followers);
+        console.log(data.profile);
         this.author = data.profile;
         
     });

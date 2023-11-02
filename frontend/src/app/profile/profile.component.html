@@ -20,6 +20,7 @@
 					<ul class="flex-menu">
 						<li (click)="change_followers()"><strong>{{profile_user.n_followers}}</strong> Followers</li>
 						<li (click)="change_follows()"><strong>{{profile_user.n_follows}}</strong> Following</li>
+						<li (click)="change_products()"> Products</li>
 					</ul>
 				</div>
 			</div>
@@ -38,9 +39,12 @@
 		<h1>Dentro de follows</h1>
 	</div>
 
-	<div *ngIf="pages_profile === 'products'">	
-		<h1>Dentro de products</h1>
-
+	<div class="row" *ngIf="pages_profile === 'products'">
+		<br>
+		<br>
+		<h1>{{profile_user.username}} Products</h1>
+		<br>
+		<app-list-products-on-profile *ngFor="let product of products" [products]="product"></app-list-products-on-profile>
 	</div>
 
     <br>
@@ -49,4 +53,3 @@
     <br>
     <br>
     <br>
-    

@@ -89,16 +89,31 @@ userSchema.methods.toProfileUnloggedJSON = function () {
     }
 };
 
-userSchema.methods.toSeeProfileUser = function (user_logged,followers,n_followers,follows,n_follows) {
-    return {
-        username: this.username,
-        bio: this.bio,
-        image: this.image,
-        followers: followers,
-        n_followers: n_followers,
-        follows: follows,
-        n_follows: n_follows,
-        following: user_logged.Following(this._id)
+userSchema.methods.toSeeProfileUser = function (user_logged,followers,n_followers,follows,n_follows,products) {
+    if (user_logged){
+        return {
+            username: this.username,
+            bio: this.bio,
+            image: this.image,
+            followers: followers,
+            n_followers: n_followers,
+            follows: follows,
+            n_follows: n_follows,
+            following: user_logged.Following(this._id),
+            products: products
+        }
+    } else {
+        return {
+            username: this.username,
+            bio: this.bio,
+            image: this.image,
+            followers: followers,
+            n_followers: n_followers,
+            follows: follows,
+            n_follows: n_follows,
+            following: false,
+            products: products
+        }
     }
 };
 

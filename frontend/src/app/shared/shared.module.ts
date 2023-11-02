@@ -24,6 +24,7 @@ import { FiltersComponent } from './filters/filters.component';
 import {FavoriteButtonComponent} from './buttons/favorite-button.component';
 import {FollowButtonComponent} from './buttons/follow-button.component';
 import { CommentsComponent } from './comments/comments.component';
+import { ListProductsOnProfileComponent } from './list-products-on-profile/list-products-on-profile.component';
 
 
 
@@ -49,8 +50,8 @@ import { CommentsComponent } from './comments/comments.component';
         ShowAuthedDirective,
         FavoriteButtonComponent,
         FollowButtonComponent,
-        CommentsComponent
-
+        CommentsComponent,
+        ListProductsOnProfileComponent
     ],
     exports: [
         ListCategoriesComponent,
@@ -66,7 +67,8 @@ import { CommentsComponent } from './comments/comments.component';
         ShowAuthedDirective,
         FavoriteButtonComponent,
         FollowButtonComponent,
-        CommentsComponent
+        CommentsComponent,
+        ListProductsOnProfileComponent
     ],
 })
 

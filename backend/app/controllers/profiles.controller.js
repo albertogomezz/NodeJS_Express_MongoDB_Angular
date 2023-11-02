@@ -1,5 +1,6 @@
 const { log } = require('console');
 const User = require('../models/user.model');
+const Product = require('../models/product.model')
 const asyncHandler = require('express-async-handler');
 const mongoose = require('mongoose');
 const { decode } = require('punycode');
@@ -89,24 +90,23 @@ const getProfile_User = asyncHandler(async (req, res) => {
         })
     }
 
-    // //Qui seguix al usuari
     const followers = await User.find({ followingUsers: { $in: [user._id] } })
     .select('username bio image -_id')
     .exec();
 
     const number_followers = followers.length;
-    // return res.json(followers)
 
-    // //A qui seguix el usuari
     const follows = await User.find({ followersUsers: { $in: [user._id] } })
     .select('username bio image')
     .exec();
 
     const number_follows = follows.length;
-    // return res.json(follows)
 
+    const products = await Product.find({ "author": user._id }).select('-_id -author').exec();
+
+    // return res.json(products)
     return res.json({
-        profile: user.toSeeProfileUser(user_logged,followers,number_followers,follows,number_follows)
+        profile: user.toSeeProfileUser(user_logged,followers,number_followers,follows,number_follows,products)
     })
 });
 
