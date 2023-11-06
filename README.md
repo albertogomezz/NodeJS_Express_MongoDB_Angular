@@ -22,9 +22,9 @@ Both options have a jump to the shop module applying the filter of the selected 
 </ul>
 
 <h3>Search</h3>
-<p>El module of search, is present both in the home and in the shop of the application. <br>
+<p>The module of search, is present in the shop of the application. <br>
   In it, you can search for the desired product by name. This search engine redirects <br>
-  to the shop section, applying the desired filter.</p>
+  to the shop section, applying the desired filter name.</p>
 
 <h3>Login</h3>
 <p>The web application also consists of a login module where the user can create an account and log in with it. 
@@ -39,19 +39,31 @@ Both options have a jump to the shop module applying the filter of the selected 
  
 <h3>Shop</h3>
 <p>This is the most important module of the website, in it you can see the list of paginated products 
-  available on the website and you can also filter the products available. You can also enter the
-  desired product and see a more detailed information of it, in addition, others users can add a comment to the product 
-  and, if it is yours, delete and modify it. There is also an option to add each product to your favorite list as long as the user is logged in.</p>
+  available on the website and you can also filter the products available. You can also enter in the
+  desired product and see a more detailed information of it, in addition, others users can add a comments to the product
+  and, if you're the owner, delete and modify it. There is also an option to add each product to your favorite list as long as the user is logged in.</p>
 <ul>
-  <li>Products List</li>
+  <li>Products list</li>
   <li>Filters</li>
   <li>Product Details</li>
   <li>Likes</li>
   <li>Pagination</li>
-  <li>Come</li>
 </ul>
 
 <hr>
+
+<h3>Product Details</h3>
+<p>In this module the user can see all the product information, as well as, following the owner of that product 
+  and adding the product to their favorite list </p>
+<ul>
+  <li>Product Information</li>
+  <li>Follow Owner</li>
+  <li>Likes</li>
+</ul>
+
+<hr>
+
+
 
 <h2>PUESTA EN MARCHA</h2>
 
