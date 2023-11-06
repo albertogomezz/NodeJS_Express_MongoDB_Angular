@@ -4,7 +4,7 @@
   
 This is a project made by the students <a href="https://github.com/albertogomezz">Alberto Gomez </a> and  <a href="https://github.com/kikogilabert">Kiko Gilabert </a>  at the 2nd year of DAW  at <a href="https://portal.edu.gva.es/iestacio/">IES L'estació</a>.<br>
   
-This project is about a website for the sale of second-hand products, in the style of wallapop,<br> on which different functionalities can be carried out.</p>
+This project is about a website for the sale of second-hand products, inspired of wallapop,<br> on which different functionalities can be carried out.</p>
 <hr>
   
 <h2>FUNCIONALITIES</h2>
@@ -28,7 +28,7 @@ Both options have a jump to the shop module applying the filter of the selected 
 
 <h3>Login</h3>
 <p>The web application also consists of a login module where the user can create an account and log in with it. 
-  It also has a profile section, where the user can see their products and the products they have liked. 
+  It also has a profile section, where users can see their own products uploaded to the web, their followers and following users. 
   It also has a settings option, where you can can modify their profile information.</p>
 <ul>
   <li>Register</li>
@@ -36,21 +36,19 @@ Both options have a jump to the shop module applying the filter of the selected 
   <li>Profile</li>
   <li>Settings</li>
 </ul>
-<p>Además el login tiene un token mediante JWT en el que va verificando durante el uso de la web si hay<br>
-un usuario conectado.</p>
  
 <h3>Shop</h3>
-<p>Este es el módulo más importante de toda la web, en el se puede ver la lista de productos del que dispone la<br>
-web y además se puede filtrar esta lista y la lista se encuentra paginada. También puede entrar en el<br>
-producto deseado y ver una lista mas detallada de este, además, el usuario puede añadir algún comentario<br>
-al producto y, en caso de que sea suyo, eliminarlo. También hay una opción de marcado de favoritos de<br> cada producto si el usuario se encuentra logeado.</p>
+<p>This is the most important module of the website, in it you can see the list of paginated products 
+  available on the website and you can also filter the products available. You can also enter the
+  desired product and see a more detailed information of it, in addition, others users can add a comment to the product 
+  and, if it is yours, delete and modify it. There is also an option to add each product to your favorite list as long as the user is logged in.</p>
 <ul>
-  <li>Lista de productos</li>
-  <li>Filtros</li>
-  <li>Detalles del producto</li>
+  <li>Products List</li>
+  <li>Filters</li>
+  <li>Product Details</li>
   <li>Likes</li>
-  <li>Paginación</li>
-  <li>Comentarios</li>
+  <li>Pagination</li>
+  <li>Come</li>
 </ul>
 
 <hr>
