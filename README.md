@@ -1,34 +1,35 @@
-<h1>SALEBACK</h1>
+<h1>DEEPSHOP</h1>
 
-<p style="text-align: justify">Bienvenidos a SaleBack.<br>
+<p style="text-align: justify">Welcome to DeepShop.<br>
   
-Un proyecto realizado por el alumno <a href="https://github.com/Salmu10">Salva Muñoz Úbeda</a> en el 1er curso de DAW en el <a href="https://portal.edu.gva.es/iestacio/">IES L'estació</a>.<br>
+This is a project made by the students <a href="https://github.com/albertogomezz">Alberto Gomez </a> and  <a href="https://github.com/kikogilabert">Kiko Gilabert </a>  at the 2nd year of DAW  at <a href="https://portal.edu.gva.es/iestacio/">IES L'estació</a>.<br>
   
-Este proyecto trata sobre una página web de venta de productos de segunda mano, al estilo wallapop,<br> sobre la cual se pueden realizar distintas funciones.</p>
+This project is about a website for the sale of second-hand products, in the style of wallapop,<br> on which different functionalities can be carried out.</p>
 <hr>
   
-<h2>FUNCIONES</h2>
+<h2>FUNCIONALITIES</h2>
  
-<p>La web contiene un total de 4 secciones.<p>
+<p>This web contains 4 secctions in total.<p>
   
 <h3>Home</h3>
-<p>En la sección del Home, el usuario tiene su primera impresión de la web, el cual puede observar<br>
-un carrusel de las categorias que dispone la página, y filtar por ellas los productos.<br>
-Además, contiene un infinite scroll de la lista de las categorias de la empresa.<br>
-Ambas opciones, tienen un salto al módulo de shop aplicando el filtro de la categoría seleccionada</p>
+<p>In the Home section, the user has his first impression of the website, where he can see 
+<br>a carousel of the categories available on the page, and filter the products by them.
+It also contains an infinite scroll that lists the different categories of the company.
+Both options have a jump to the shop module applying the filter of the selected category.</p>
 <ul>
-  <li>Carrusel de categorias</li>
-  <li>Infinite scroll de categorías</li>
+  <li>Categories' Carrousel</li>
+  <li>Categories' Infinite scroll</li>
 </ul>
 
 <h3>Search</h3>
-<p>El módulo de search, esta presente tanto en el home como en el shop de la aplicación. En él, se puede<br>
-buscar el producto deseado por su nombre. Este motor de búsqueda, redirige a la sección del shop,<br>
-aplicando el filtro deseado.</p>
+<p>El module of search, is present both in the home and in the shop of the application. <br>
+  In it, you can search for the desired product by name. This search engine redirects <br>
+  to the shop section, applying the desired filter.</p>
 
 <h3>Login</h3>
-<p>La aplicación web, consta también, de un módulo de login donde el usuario puede crear una cuenta, e<br> iniciar sesión con ella. Consta además, de una sección de perfil, donde el usuario puede ver sus<br> productos y los productos a los que les ha dado like. También tiene una opción de ajustes, donde puede<br>
-puede modificar la información de su perfil.</p>
+<p>The web application also consists of a login module where the user can create an account and log in with it. 
+  It also has a profile section, where the user can see their products and the products they have liked. 
+  It also has a settings option, where you can can modify their profile information.</p>
 <ul>
   <li>Register</li>
   <li>Login</li>
