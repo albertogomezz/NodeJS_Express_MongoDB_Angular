@@ -54,11 +54,23 @@ Both options have a jump to the shop module applying the filter of the selected 
 
 <h3>Product Details</h3>
 <p>In this module the user can see all the product information, as well as, following the owner of that product 
-  and adding the product to their favorite list </p>
+  and adding the product to their favorite list. If the user is the product owner the menu buttons will show diferent functionalities
+  as editing the product data and a delete button if necessary.</p>
 <ul>
   <li>Product Information</li>
-  <li>Follow Owner</li>
-  <li>Likes</li>
+  <li>User Functionalities
+    <ul>
+      <li>Likes</li>
+      <li>Follow Owner</li>
+    </ul>
+  </li>
+  <li>Owner Functionalities
+    <ul>
+      <li>Edit product data</li>
+      <li>Delete Product</li>
+    </ul>
+  </li>
+
 </ul>
 
 <hr>
