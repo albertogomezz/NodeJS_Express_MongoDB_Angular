@@ -75,7 +75,16 @@ Both options have a jump to the shop module applying the filter of the selected 
 
 <hr>
 
-
+<h2>Tecnologías 👨‍💻</h2>
+<ul>BACKEND
+  <li>Express</li>
+</ul>
+<ul>FRONTEND
+  <li>Angular</li>
+</ul>
+<ul>BBDD
+  <li>MongoDB</li>
+</ul>
 
 <h2>PUESTA EN MARCHA</h2>
 
@@ -108,7 +117,6 @@ Both options have a jump to the shop module applying the filter of the selected 
 <p>Lista de librerías utilizadas en este proyecto:</p>
 
 <ul>
-  <li><a href="https://codeseven.github.io/toastr/">Toastr</a></li>
   <li><a href="https://fontawesome.com/">Font Awesome</a></li>
   <li><a href="https://www.flaticon.es/">Flaticon</a></li>
   <li><a href="https://avatars.dicebear.com/">DiceBear Avatars</a></li>
