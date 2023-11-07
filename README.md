@@ -76,24 +76,26 @@ Both options have a jump to the shop module applying the filter of the selected 
 <hr>
 
 <h2>Tecnologías 👨‍💻</h2>
-<ul>BACKEND
-  <li>Express</li>
-</ul>
-<ul>FRONTEND
-  <li>Angular</li>
-</ul>
-<ul>BBDD
-  <li>MongoDB</li>
-</ul>
+ <h4>BACKEND</h4>
+ <p>Express</p>
+ <br>
+ <h4>FRONTEND</h4>
+ <p>Express</p>
+ <br>
+ <h4>BBDD</h4>
+ <p>MongoDB</p>
+ <br>
+
 
 <h2>PUESTA EN MARCHA</h2>
 
 <p>Es necesario crear el fichero .env en la carpeta de servidor.</p>
 <p>Tener instalado las siguientes herramientas:<br>
 
-- NodeJS V16.17.0<br>
-- Angular V13<br>
-- MongoDB</p>
+- NodeJS V20.*<br>
+- Express 4.18 <br>
+- Angular V16.*<br>
+- MongoDB 6.*</p>
 
 <h3>BACKEND</h3>
 <ol>
@@ -106,7 +108,7 @@ Both options have a jump to the shop module applying the filter of the selected 
 <ol>
   <li>cd client</li>
   <li>npm install</li>
-  <li>npm start</li>
+  <li>ng serve</li>
 </ol>
 
 
@@ -117,8 +119,6 @@ Both options have a jump to the shop module applying the filter of the selected 
 <p>Lista de librerías utilizadas en este proyecto:</p>
 
 <ul>
-  <li><a href="https://fontawesome.com/">Font Awesome</a></li>
-  <li><a href="https://www.flaticon.es/">Flaticon</a></li>
-  <li><a href="https://avatars.dicebear.com/">DiceBear Avatars</a></li>
+  <li><a href="https://getbootstrap.com/">Bootstrap</a></li>
 </ul>
  
