@@ -80,7 +80,7 @@ Both options have a jump to the shop module applying the filter of the selected 
  <p>Express</p>
  <br>
  <h4>FRONTEND</h4>
- <p>Express</p>
+ <p>Angular16</p>
  <br>
  <h4>BBDD</h4>
  <p>MongoDB</p>
