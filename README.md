@@ -9,7 +9,7 @@ This project is about a website for the sale of second-hand products, inspired o
   
 <h2>FUNCIONALITIES</h2>
  
-<p>This web contains 4 secctions in total.<p>
+<p>This web contains 4 sections in total.<p>
   
 <h3>Home</h3>
 <p>In the Home section, the user has his first impression of the website, where he can see 
